@@ -291,3 +291,27 @@ footer {
 @media (max-width: 900px) {
   .grid3 { grid-template-columns: 1fr; }
 }
+/* --- Hero：モバイルでは「画像 → テキスト」並びにする --- */
+
+/* 念のため：画像を親幅にフィット */
+.hero-media img{
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* モバイル */
+@media (max-width: 900px){
+  /* hero-grid が grid の想定。grid-template-areasで順番を指定 */
+  .hero-grid{
+    display: grid;                 /* 既にgridでもOK（上書き） */
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "media"
+      "text";
+    gap: 16px;                     /* 好みで調整 */
+  }
+
+  .hero-media{ grid-area: media; }
+  .hero-text{  grid-area: text;  }
+}
