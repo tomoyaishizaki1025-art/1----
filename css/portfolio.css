@@ -341,3 +341,11 @@ footer {
   .hero-media{ grid-area: media; }
   .hero-text{  grid-area: text;  }
 }
+/* ===== DEBUG: まず見える化（あとで消す） ===== */
+#works .card{
+  background: rgba(0, 255, 255, 0.12) !important;
+  outline: 3px solid rgba(255, 0, 255, 0.9) !important;
+}
+#works .grid3{
+  outline: 3px dashed rgba(255, 255, 0, 0.9) !important;
+}
