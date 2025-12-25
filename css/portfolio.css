@@ -216,10 +216,10 @@ html, body {
 
 /* ① Worksの横幅（ページ中央で小さめに） */
 .section--full .container.works-container {
-  max-width: 960px;          /* ← 小さくしたい時は 880 / 800 と下げる */
+  max-width: 2000px;          /* ← 小さくしたい時は 880 / 800 と下げる */
   width: 100%;
   margin: 0 auto;
-  padding: 0 16px;
+  padding: 200px 0;
 }
 
 /* ② 3カラム（狭くなったら2→1へ） */
