@@ -219,7 +219,7 @@ html, body {
   max-width: 2000px;          /* ← 小さくしたい時は 880 / 800 と下げる */
   width: 100%;
   margin: 0 auto;
-  padding: 200px 0;
+  padding: 400px 0;
 }
 
 /* ② 3カラム（狭くなったら2→1へ） */
