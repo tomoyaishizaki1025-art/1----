@@ -35,6 +35,9 @@ body {
   margin: 0 auto;
   padding: 0 16px;
 }
+html, body {
+  overflow-x: hidden;
+}
 
 /* =========================================================
    2) ヘッダー（ナビゲーション）
@@ -213,44 +216,52 @@ body {
   padding: 8vh 0;
 }
 
-.section--full .container {
-  max-width: none;
-  width: 100%;
-  padding-left: 5vw;
-  padding-right: 5vw;
-}
 
 /* ---- Works ---- */
-/* ---- Works ---- */
+
+/* ① Worksの横幅（ページ中央で小さめに） */
+.section--full .container.works-container {
+  max-width: 960px;          /* ← 小さくしたい時は 880 / 800 と下げる */
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* ② 3カラム（狭くなったら2→1へ） */
 .grid3 {
   display: grid;
-  gap: 16px;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr)); /* ←崩れ防止 */
+  gap: 20px;                                        /* ←余白調整 */
+  align-items: start;                               /* ←縦伸び防止 */
 }
 
-/* 共通カード（Works / Pricing 共用） */
-.card {
-  background: var(--surface);
-  border: 1px solid rgba(255, 255, 255, .06);
-  border-radius: 16px;
-  padding: 16px;
+/* ③ Worksのカード（縦長を止めて、サイズ感を揃える） */
+.section--full .works-container .card {
+  padding: 18px;
+  min-height: 180px;          /* ←小さくしたいなら 160 とか */
   display: flex;
   flex-direction: column;
+  gap: 10px;                  /* ←中の余白 */
 }
 
-/* Worksだけ：全幅指定を打ち消して横幅を制限 */
-.section--full .container.works-container {
-  max-width: 1100px;
-  width: min(1100px, 100%);
-  margin: 0 auto;
-  padding-left: 16px;
-  padding-right: 16px;
+/* 見出しと本文のバランス（任意） */
+.section--full .works-container .card h3 {
+  margin: 0;
+  font-size: 20px;            /* ←文字サイズ */
+}
+.section--full .works-container .card p {
+  margin: 0;
+  opacity: .9;
 }
 
-/* Worksだけ：カードのサイズ感を調整 */
-.section--full .works-container .card {
-  aspect-ratio: 4 / 3; /* 正方形なら 1 / 1 */
+/* レスポンシブ：タブレットは2列、スマホは1列 */
+@media (max-width: 900px) {
+  .grid3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+@media (max-width: 600px) {
+  .grid3 { grid-template-columns: 1fr; }
+}
+
 
 /* =========================================================
    5) タイポグラフィ
