@@ -111,7 +111,7 @@ html, body {
 }
 
 /* ---------- モバイルメニュー ---------- */
-@media (max-width: 900px) {
+@media (max-width: 600px) {
   .nav-toggle { display: inline-block; }
 
   .nav {
