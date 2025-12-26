@@ -355,6 +355,22 @@ footer {
   .hero-media{ grid-area: media; }
   .hero-text{  grid-area: text;  }
 }
+/* ===== タブレット（iPad mini含む）ヘッダーをスリム化 ===== */
+@media (max-width: 1024px){
+  .site-header{ padding: 10px 0; }           /* 20→10 */
+  .site-header .container{
+    min-height: 56px;                         /* 72→56 */
+    padding: 0 16px;                          /* 32→16 */
+    gap: 16px;                                /* 24→16 */
+  }
+
+  .brand{ font-size: 24px; }                  /* 40→24 */
+  .nav a{
+    font-size: 18px;                          /* 30→18 */
+    margin: 0 8px;                            /* 15→8 */
+  }
+}
+
 /* ===== DEBUG: まず見える化（あとで消す） ===== */
 #works .card{
   background: rgba(0, 255, 255, 0.12) !important;
