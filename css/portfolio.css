@@ -201,11 +201,29 @@ html, body {
 }
 
 /* モバイル（縦並び） */
+/* モバイル（縦並び） */
 @media (max-width: 900px) {
-  .hero-grid { grid-template-columns: 1fr; }
-  .hero-media { order: 2; }
-  .hero-text { order: 1; }
+  .hero-grid {
+    grid-template-columns: 1fr;
+    justify-items: center;        /* ← 画像を中央に */
+  }
+
+  .hero-media {
+    order: 2;
+    justify-self: center;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .hero-text {
+    order: 1;
+    justify-self: start;          /* ← 左寄せ */
+    text-align: left;
+    max-width: 680px;             /* 読みやすさ用（任意） */
+  }
 }
+
 
 /* =========================================================
    4) セクション共通（Works / Pricing / Contact）
@@ -339,7 +357,7 @@ footer {
 }
 
 /* モバイル */
-@media (max-width: 900px){
+/*@media (max-width: 900px){
   /* hero-grid が grid の想定。grid-template-areasで順番を指定 */
   .hero,
   .hero.container,
@@ -349,8 +367,8 @@ footer {
     grid-template-areas:
       "media"
       "text";
-    gap: 16px;                     /* 好みで調整 */
-  }
+    gap: 16px;                     /* 好みで調整 
+  }*/
 
   .hero-media{ grid-area: media; }
   .hero-text{  grid-area: text;  }
