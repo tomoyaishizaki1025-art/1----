@@ -403,7 +403,37 @@ footer {
   .hero-media{
     justify-self: center !important;
   }
+}/* ===== Hero 最終調整（ここだけ触る） ===== */
+
+/* 1) モバイル（デフォルト）: 縦並び */
+.hero-grid{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  max-width: 1120px;
+  margin-inline: auto;
 }
+
+/* 2) PC（901px〜）: 左画像 / 右テキスト */
+@media (min-width: 901px){
+  .hero-grid{
+    grid-template-columns: 0.9fr 1.1fr; /* 比率はここだけで調整 */
+    align-items: center;               /* 縦位置を揃える */
+    gap: clamp(24px, 4vw, 56px);
+  }
+
+  /* “全体を中央寄せ” したいなら、これが効く */
+  .hero-grid{
+    justify-content: center;
+  }
+
+  /* 個別の寄せは一旦フラットに（左右崩れの原因を消す） */
+  .hero-media,
+  .hero-text{
+    justify-self: stretch;
+  }
+}
+
 
 
 
