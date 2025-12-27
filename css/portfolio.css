@@ -482,3 +482,6 @@ footer {
 #works .grid3{
   outline: 3px dashed rgba(255, 255, 0, 0.9) !important;
 }
+.hero-grid{ outline: 4px solid hotpink; }
+.hero-text{ outline: 4px solid cyan; }
+.hero-media{ outline: 4px solid yellow; }
