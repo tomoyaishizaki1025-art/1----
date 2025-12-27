@@ -388,6 +388,22 @@ footer {
     margin: 0 8px;                            /* 15→8 */
   }
 }
+/* ===== Hero PC整列（強制上書き）===== */
+@media (min-width: 901px){
+
+  .hero-grid{
+    max-width: 1120px !important;
+    margin-inline: auto !important;
+  }
+
+  .hero-text{
+    justify-self: center !important;
+  }
+
+  .hero-media{
+    justify-self: center !important;
+  }
+}
 
 
 /* ===== DEBUG: まず見える化（あとで消す） ===== */
