@@ -390,8 +390,28 @@ footer {
 }
 /* ===== Hero 微調整（最後に置く） ===== */
 @media (min-width: 901px) {
-  .hero-media { margin-top: 24px; }
-  .hero-text  { margin-top: -24px; }
+  .hero-media { margin-top: 0px; }
+  .hero-text  { margin-top: -0px; }
+}
+/* ===== Hero PC整列（安全に最後で上書き）===== */
+@media (min-width: 901px){
+
+  /* ① 横に広がりすぎ問題を止める（最重要） */
+  .hero-grid{
+    max-width: 1120px;      /* 1080〜1200で調整 */
+    margin-inline: auto;
+  }
+
+  /* ② 左右に散る原因（end / start）を消して中央寄りに */
+  .hero-text{
+    justify-self: center;   /* end → center */
+  }
+  .hero-media{
+    justify-self: center;   /* start → center */
+  }
+
+  /* ③ 文字がまだズレる時の最終調整（任意） */
+  /* .hero-text{ padding-left: 24px; } */
 }
 
 /* ===== DEBUG: まず見える化（あとで消す） ===== */
