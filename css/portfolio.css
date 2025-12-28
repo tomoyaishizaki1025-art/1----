@@ -350,6 +350,16 @@ body {
   margin: 0;
   opacity: .9;
 }
+/* Contact はグリッドの影響を受けない（保険） */
+#contact .container{
+  display: block;   /* grid を強制解除 */
+}
+
+/* フォームカードを中央に */
+#contact .form.card{
+  max-width: 720px;
+  margin: 0 auto;
+}
 
 /* =========================================================
    5) タイポグラフィ
