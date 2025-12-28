@@ -3,163 +3,157 @@
 /* =========================================================
    0) 変数（テーマカラー / 幅）
    ====================================================== */
-:root {
-  --bg: #0F172A;
-  --surface: #172554;
-  --text: #E5E7EB;
-  --muted: #334155;
-  --accent: #93C5FD;
-  --accent2: #C4B5FD;
-  --w: 1120px;
+:root{
+  --bg:#0F172A;
+  --surface:#172554;
+  --text:#E5E7EB;
+  --muted:#334155;
+  --accent:#93C5FD;
+  --accent2:#C4B5FD;
+  --w:1120px;
 
   /* ナビゲーション */
-  --nav-base: #e8dfcc;   /* ベージュ寄りの白 */
-  --nav-hover: #a5f3fc;  /* 水色（ホバー） */
+  --nav-base:#e8dfcc;
+  --nav-hover:#a5f3fc;
 }
 
 /* =========================================================
    1) リセット / ベース
    ====================================================== */
-* { box-sizing: border-box; }
-html, body { margin: 0; }
-html, body { overflow-x: hidden; }
+*{ box-sizing:border-box; }
+html, body{ margin:0; }
+html, body{ overflow-x:hidden; }
 
-body {
-  font: 16px / 1.7 system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans JP", sans-serif;
-  background: var(--bg);
-  color: var(--text);
+body{
+  font:16px/1.7 system-ui,-apple-system,Segoe UI,Roboto,"Noto Sans JP",sans-serif;
+  background:var(--bg);
+  color:var(--text);
 }
 
 /* コンテンツの横幅と左右パディング */
-.container {
-  max-width: var(--w);
-  margin: 0 auto;
-  padding: 0 16px;
+.container{
+  max-width:var(--w);
+  margin:0 auto;
+  padding:0 16px;
 }
 
 /* =========================================================
    2) ヘッダー（ナビゲーション）
    ====================================================== */
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  width: 100%;
-  padding: 20px 0;
-
-  background: linear-gradient(90deg, #1e1b4b 0%, #312e81 100%);
-  backdrop-filter: blur(8px);
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:10;
+  width:100%;
+  padding:20px 0;
+  background:linear-gradient(90deg,#1e1b4b 0%,#312e81 100%);
+  backdrop-filter:blur(8px);
 }
 
-.site-header .container {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-
-  min-height: 72px;
-  padding: 0 32px;
+.site-header .container{
+  display:flex;
+  align-items:center;
+  gap:24px;
+  min-height:72px;
+  padding:0 32px;
 }
 
-.brand {
-  margin-right: auto;
-  font-size: 40px;
-  font-weight: 700;
+.brand{
+  margin-right:auto;
+  font-size:40px;
+  font-weight:700;
 }
 
-.nav {
-  display: flex;
-  gap: 28px;
-  margin-left: auto;
+.nav{
+  display:flex;
+  gap:28px;
+  margin-left:auto;
 }
 
-/* nav link（PC） */
-.nav a {
-  display: inline-block;
-  color: var(--nav-base);
-  text-decoration: none;
-  font-family: "Noto Sans JP", "Inter", sans-serif;
-
-  font-size: 30px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  margin: 0 15px;
-  transition: color 0.25s ease, transform 0.25s ease, text-shadow 0.25s ease;
+.nav a{
+  display:inline-block;
+  color:var(--nav-base);
+  text-decoration:none;
+  font-family:"Noto Sans JP","Inter",sans-serif;
+  font-size:30px;
+  font-weight:600;
+  letter-spacing:.5px;
+  margin:0 15px;
+  transition:color .25s ease,transform .25s ease,text-shadow .25s ease;
 }
 
 .nav a:hover,
-.nav a:focus {
-  color: var(--nav-hover);
-  transform: translateY(-1px) scale(1.06);
-  text-shadow: 0 0 10px currentColor, 0 0 18px currentColor;
+.nav a:focus{
+  color:var(--nav-hover);
+  transform:translateY(-1px) scale(1.06);
+  text-shadow:0 0 10px currentColor,0 0 18px currentColor;
 }
 
 /* モバイル用トグル */
-.nav-toggle {
-  display: none;
-  border: 1px solid rgba(255,255,255,.25);
-  background: transparent;
-  color: #fff;
-  padding: .4rem .7rem;
-  border-radius: .5rem;
+.nav-toggle{
+  display:none;
+  border:1px solid rgba(255,255,255,.25);
+  background:transparent;
+  color:#fff;
+  padding:.4rem .7rem;
+  border-radius:.5rem;
 }
 
 /* =========================================================
    2.1) ヘッダー：タブレット（iPad mini含む）でスリム化
    ====================================================== */
-@media (max-width: 1024px){
-  .site-header{ padding: 10px 0; }
+@media (max-width:1024px){
+  .site-header{ padding:10px 0; }
   .site-header .container{
-    min-height: 56px;
-    padding: 0 16px;
-    gap: 16px;
+    min-height:56px;
+    padding:0 16px;
+    gap:16px;
   }
-  .brand{ font-size: 24px; }
+  .brand{ font-size:24px; }
   .nav a{
-    font-size: 18px;
-    margin: 0 8px;
+    font-size:18px;
+    margin:0 8px;
   }
 }
 
 /* =========================================================
    2.2) ヘッダー：モバイルメニュー（〜600px）
    ====================================================== */
-@media (max-width: 600px) {
-  .nav-toggle { display: inline-block; }
+@media (max-width:600px){
+  .nav-toggle{ display:inline-block; }
 
-  .nav {
-    position: absolute;
-    right: 16px;
-    top: calc(100% + 8px);
+  .nav{
+    position:absolute;
+    right:16px;
+    top:calc(100% + 8px);
+    background:rgba(10,12,28,.95);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:12px;
+    padding:12px 14px;
+    display:block;
+    width:min(82vw,320px);
 
-    background: rgba(10,12,28,.95);
-    border: 1px solid rgba(255,255,255,.08);
-    border-radius: 12px;
-    padding: 12px 14px;
+    transform:translateY(-16px);
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .2s ease,transform .2s ease;
 
-    display: block;
-    width: min(82vw, 320px);
-
-    transform: translateY(-16px);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity .2s ease, transform .2s ease;
-
-    box-shadow: 0 10px 24px rgba(0,0,0,.35);
+    box-shadow:0 10px 24px rgba(0,0,0,.35);
   }
 
-  .brand { font-size: 18px; }
+  .brand{ font-size:18px; }
 
-  .nav a {
-    display: block;
-    padding: 10px 6px;
-    font-size: 16px;
-    margin: 0; /* モバイルは横マージン不要 */
+  .nav a{
+    display:block;
+    padding:10px 6px;
+    font-size:16px;
+    margin:0;
   }
 
-  .nav.is-open {
-    transform: translateY(0);
-    opacity: 1;
-    pointer-events: auto;
+  .nav.is-open{
+    transform:translateY(0);
+    opacity:1;
+    pointer-events:auto;
   }
 }
 
@@ -167,384 +161,244 @@ body {
    3) ヒーローセクション（統一版：ここだけ触る）
    ====================================================== */
 .hero{
-  position: relative;
-  overflow: hidden;
-  min-height: 90vh;
-  display: grid;
-  place-items: center;
-  padding: clamp(24px, 4vw, 56px) 0;
+  position:relative;
+  overflow:hidden;
+  min-height:90vh;
+  display:grid;
+  place-items:center;
+  padding:clamp(24px,4vw,56px) 0;
 }
 
-/* レイアウトの骨格（重複禁止） */
 .hero-grid{
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: 0 16px;
-  display: grid;
-  gap: clamp(16px, 3vw, 56px);
-  align-items: center;
+  max-width:1120px;
+  margin:0 auto;
+  padding:0 16px;
+  display:grid;
+  gap:clamp(16px,3vw,56px);
+  align-items:center;
 }
 
-/* 〜900px：縦並び（テキスト→画像） */
-@media (max-width: 900px){
-  .hero-grid{ grid-template-columns: 1fr; }
-  .hero-text{ order: 1; text-align: left; max-width: 68ch; }
-  .hero-media{ order: 2; display: flex; justify-content: center; }
+@media (max-width:900px){
+  .hero-grid{ grid-template-columns:1fr; }
+  .hero-text{ order:1; text-align:left; max-width:68ch; }
+  .hero-media{ order:2; display:flex; justify-content:center; }
 }
 
-/* 901px〜：左画像 / 右テキスト */
-@media (min-width: 901px){
+@media (min-width:901px){
   .hero-grid{
-    grid-template-columns: minmax(0, 520px) minmax(0, 1fr);
+    grid-template-columns:minmax(0,520px) minmax(0,1fr);
   }
-  .hero-text, .hero-media{ justify-self: stretch; }
+  .hero-text,.hero-media{ justify-self:stretch; }
 }
 
 .hero-text{
-  text-align: left;
-  max-width: 80ch;
+  text-align:left;
+  max-width:80ch;
 }
 
-.hero-media{
-  margin: 0;
-}
+.hero-media{ margin:0; }
 
 .hero-media img{
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  max-height: min(56vh, 520px);
-  object-fit: cover;
-
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.25);
-  display: block;
+  width:100%;
+  height:auto;
+  max-width:100%;
+  max-height:min(56vh,520px);
+  object-fit:cover;
+  border-radius:16px;
+  box-shadow:0 10px 30px rgba(0,0,0,.25);
+  display:block;
 }
 
-/* 背景アニメ等がある場合（あなたの構造に合わせて保持） */
-.wiggle { z-index: 0; inset: -25%; }
+/* 背景アニメ等がある場合 */
+.wiggle{ z-index:0; inset:-25%; }
 .hero .container,
-.hero-grid { position: relative; z-index: 1; }
+.hero-grid{ position:relative; z-index:1; }
 
 /* =========================================================
    4) セクション共通（Works / Pricing / Contact）
    ====================================================== */
-
-/* ---- Works ---- */
-.section--full .container.works-container {
-  max-width: 1500px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 100px 0;
+.section{
+  padding:88px 0;
+}
+@media (max-width:600px){
+  .section{ padding:64px 0; }
 }
 
-/* 3カラム → 2 → 1（重複禁止） */
+.section h2{
+  margin:0 0 18px;
+}
+
+/* 3カラム → 2 → 1 */
 .grid3{
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
-  align-items: start;
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0,1fr));
+  gap:20px;
+  align-items:start;
 }
-
-@media (max-width: 1024px){
-  .grid3{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width:1024px){
+  .grid3{ grid-template-columns:repeat(2, minmax(0,1fr)); }
 }
-@media (max-width: 767px){
-  .grid3{ grid-template-columns: 1fr; }
+@media (max-width:767px){
+  .grid3{ grid-template-columns:1fr; }
 }
-
 
 /* =========================================================
-   4.x) Pricing / Contact を整える（不足分を追加）
+   4.1) Works（Coming Soon）
    ====================================================== */
-
-/* セクションの上下余白（Pricing/Contactが詰まって見えるのを防ぐ） */
-.section{
-  padding: 88px 0;
+.section--full .container.works-container{
+  max-width:1500px;
+  width:100%;
+  margin:0 auto;
+  padding:100px 0;
 }
 
-/* 見出しがあるなら上の詰まり防止用（任意） */
-.section h2{
-  margin: 0 0 18px;
+/* ✅重要：Worksカードを“必要な高さ”に固定（Pricingが沈む原因を根絶） */
+#works .works-container .card{
+  min-height:auto;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+  gap:10px;
 }
 
-/* Pricingカード：works用cardの影響を受けても崩れないように */
-#pricing .card{
-  padding: 22px;
-  min-height: auto;           /* Worksの min-height:px を打ち消す */
-  justify-content: flex-start;/* Worksの justify-content:end を打ち消す */
-  gap: 10px;
+/* Coming Soon 画像を安定させる */
+#works .works-container .card img{
+  width:100%;
+  height:220px;       /* 200〜260で好みに調整 */
+  object-fit:cover;
+  display:block;
+}
+
+/* Works 内のテキスト整形 */
+#works .works-container .card h3{
+  margin:0;
+  font-size:20px;
+}
+#works .works-container .card p{
+  margin:0;
+  opacity:.9;
+}
+
+/* =========================================================
+   4.2) Pricing（Worksの.card設計と混ざらないように隔離）
+   ====================================================== */
+#pricing .plan.card{
+  padding:22px;
+  min-height:auto;
+  display:block; /* flexの影響を切る */
 }
 
 #pricing .plan h3{
-  margin: 0 0 6px;
-  font-size: 22px;
+  margin:0 0 6px;
+  font-size:22px;
 }
-
 #pricing .plan p{
-  margin: 0 0 12px;
-  opacity: .9;
+  margin:0 0 12px;
+  opacity:.9;
 }
-
 #pricing .plan .price{
-  font-size: 20px;
-  font-weight: 700;
+  font-size:20px;
+  font-weight:700;
 }
 
-/* Contact: narrow が未定義なので追加 */
+/* =========================================================
+   4.3) Contact
+   ====================================================== */
 .container.narrow{
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 0 16px;
+  max-width:720px;
+  margin:0 auto;
+  padding:0 16px;
 }
 
-/* フォームを縦並びにする（ここが崩れの本丸） */
+/* Contact はレイアウト干渉を遮断 */
+#contact .container{ display:block; }
+
 .form{
-  display: grid;
-  gap: 14px;
+  display:grid;
+  gap:14px;
 }
 
-/* label が横詰まりしないよう block 化 */
 .form label{
-  display: grid;
-  gap: 6px;
-  font-weight: 600;
+  display:grid;
+  gap:6px;
+  font-weight:600;
 }
 
-/* 入力は幅100% */
 .form input,
 .form textarea{
-  width: 100%;
-  padding: 12px 12px;
-  border-radius: 10px;
-  border: 1px solid rgba(255,255,255,.16);
-  background: rgba(15,23,42,.55);
-  color: var(--text);
-  font: inherit;
-}
-/* Pricingは常に上揃え・高さ自動（Worksのcard指定に引っ張られない） */
-#pricing .plan.card{
-  min-height: auto;
-  display: block;       /* flexの影響を切る（安全策） */
-}
-/* セクション全体の上下余白を統一 */
-.section{
-  padding: 88px 0;
+  width:100%;
+  padding:12px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,.16);
+  background:rgba(15,23,42,.55);
+  color:var(--text);
+  font:inherit;
 }
 
-/* 送信ボタンを見やすく */
 .form .btn{
-  width: fit-content;
-  padding: 10px 16px;
-}
-
-/* モバイルでの余白微調整（任意） */
-@media (max-width: 600px){
-  .section{ padding: 64px 0; }
-}
-
-.section--full .works-container .card img {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  display: block;
-}
-
-.section--full .works-container .card h3 {
-  margin: 0;
-  font-size: 20px;
-}
-
-.section--full .works-container .card p {
-  margin: 0;
-  opacity: .9;
-}
-/* Contact はグリッドの影響を受けない（保険） */
-#contact .container{
-  display: block;   /* grid を強制解除 */
-}
-
-/* フォームカードを中央に */
-#contact .form.card{
-  max-width: 720px;
-  margin: 0 auto;
+  width:fit-content;
+  padding:10px 16px;
 }
 
 /* =========================================================
    5) タイポグラフィ
    ====================================================== */
-.h1 {
-  font-size: clamp(24px, 4vw, 40px);
-  margin: .2em 0;
+.h1{
+  font-size:clamp(24px,4vw,40px);
+  margin:.2em 0;
 }
-.lead { opacity: .9; }
+.lead{ opacity:.9; }
 
 /* =========================================================
    6) ボタン / コンポーネント
    ====================================================== */
-.btn {
-  display: inline-block;
-  padding: 10px 14px;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, .2);
+.btn{
+  display:inline-block;
+  padding:10px 14px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,.2);
 }
-.btn-primary {
-  border-color: transparent;
-  background: linear-gradient(90deg, var(--accent), var(--accent2));
-  color: #0b1120;
+.btn-primary{
+  border-color:transparent;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  color:#0b1120;
 }
 
 /* =========================================================
    7) フッター
    ====================================================== */
-footer {
-  opacity: .8;
-  padding: 24px 0;
-  border-top: 1px solid rgba(255, 255, 255, .06);
+footer{
+  opacity:.8;
+  padding:24px 0;
+  border-top:1px solid rgba(255,255,255,.06);
 }
 
 /* =========================================================
    8) アニメーション / ユーティリティ
    ====================================================== */
-.reveal {
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity .5s, transform .5s;
+.reveal{
+  opacity:0;
+  transform:translateY(12px);
+  transition:opacity .5s, transform .5s;
 }
-.reveal.is-visible {
-  opacity: 1;
-  transform: none;
-}
-/* Worksカードの“無駄な高さ”を消す（Pricingが沈む原因を潰す） */
-#works .works-container .card{
-  min-height: auto;
-  justify-content: flex-start;
-}
-/* =========================================================
-   4) セクション共通（Works / Pricing / Contact）
-   ====================================================== */
-
-/* セクションの上下余白（全体のリズム） */
-.section{
-  padding: 88px 0;
-}
-@media (max-width: 600px){
-  .section{ padding: 64px 0; }
-}
-
-/* 3カラム → 2 → 1 */
-.grid3{
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
-  align-items: start;
-}
-@media (max-width: 1024px){
-  .grid3{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-@media (max-width: 767px){
-  .grid3{ grid-template-columns: 1fr; }
-}
-
-/* -------------------------
-   Works
--------------------------- */
-.section--full .container.works-container{
-  max-width: 1500px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 100px 0;
-}
-
-/* ✅ 重要：Worksカードを“必要な高さ”に（Pricingが沈む原因を潰す） */
-#works .works-container .card{
-  min-height: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  gap: 10px;
-}
-
-/* Works画像 */
-#works .works-container .card img{
-  width: 100%;
-  height: 220px;      /* まず固定でOK（後で調整） */
-  object-fit: cover;
-  display: block;
-}
-
-/* -------------------------
-   Pricing
--------------------------- */
-#pricing .plan.card{
-  padding: 22px;
-  min-height: auto;
-  display: block; /* Worksカードのflex設計と混ざらないように */
-}
-
-#pricing .plan h3{
-  margin: 0 0 6px;
-  font-size: 22px;
-}
-#pricing .plan p{
-  margin: 0 0 12px;
-  opacity: .9;
-}
-#pricing .plan .price{
-  font-size: 20px;
-  font-weight: 700;
-}
-
-/* -------------------------
-   Contact
--------------------------- */
-.container.narrow{
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 0 16px;
-}
-
-#contact .container{
-  display: block;
-}
-
-.form{
-  display: grid;
-  gap: 14px;
-}
-.form label{
-  display: grid;
-  gap: 6px;
-  font-weight: 600;
-}
-.form input,
-.form textarea{
-  width: 100%;
-  padding: 12px;
-  border-radius: 10px;
-  border: 1px solid rgba(255,255,255,.16);
-  background: rgba(15,23,42,.55);
-  color: var(--text);
-  font: inherit;
-}
-.form .btn{
-  width: fit-content;
-  padding: 10px 16px;
+.reveal.is-visible{
+  opacity:1;
+  transform:none;
 }
 
 /* =========================================================
    9) DEBUG（必要な時だけON）
    ====================================================== */
 /*
-.hero-grid{ outline: 4px solid hotpink; }
-.hero-text{ outline: 4px solid cyan; }
-.hero-media{ outline: 4px solid yellow; }
+.hero-grid{ outline:4px solid hotpink; }
+.hero-text{ outline:4px solid cyan; }
+.hero-media{ outline:4px solid yellow; }
 
 #works .card{
-  background: rgba(0, 255, 255, 0.12) !important;
-  outline: 3px solid rgba(255, 0, 255, 0.9) !important;
+  background:rgba(0,255,255,.12) !important;
+  outline:3px solid rgba(255,0,255,.9) !important;
 }
 #works .grid3{
-  outline: 3px dashed rgba(255, 255, 0, 0.9) !important;
+  outline:3px dashed rgba(255,255,0,.9) !important;
 }
 */
