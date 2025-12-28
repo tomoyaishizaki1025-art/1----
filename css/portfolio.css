@@ -271,7 +271,7 @@ body {
 /* Pricingカード：works用cardの影響を受けても崩れないように */
 #pricing .card{
   padding: 22px;
-  min-height: auto;           /* Worksの min-height:450px を打ち消す */
+  min-height: auto;           /* Worksの min-height:px を打ち消す */
   justify-content: flex-start;/* Worksの justify-content:end を打ち消す */
   gap: 10px;
 }
@@ -414,6 +414,11 @@ footer {
 .reveal.is-visible {
   opacity: 1;
   transform: none;
+}
+/* Worksカードの“無駄な高さ”を消す（Pricingが沈む原因を潰す） */
+#works .works-container .card{
+  min-height: auto;
+  justify-content: flex-start;
 }
 
 /* =========================================================
