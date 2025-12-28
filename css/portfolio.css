@@ -251,6 +251,21 @@ body{
   margin:0 auto;
   padding:100px 0;
 }
+/* Worksの余白を詰める（Pricingが沈む問題の本命） */
+.section--full .container.works-container{
+  padding: 40px 0;   /* 100px → 40px に */
+}
+
+/* Worksの下に余白を作るなら “ここだけ” にする */
+#works{
+  padding-bottom: 24px;
+}
+
+/* Pricingは上を詰める */
+#pricing{
+  padding-top: 24px;
+}
+
 
 /* ✅重要：Worksカードを“必要な高さ”に固定（Pricingが沈む原因を根絶） */
 #works .works-container .card{
