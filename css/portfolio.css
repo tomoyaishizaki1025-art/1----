@@ -420,6 +420,117 @@ footer {
   min-height: auto;
   justify-content: flex-start;
 }
+/* =========================================================
+   4) セクション共通（Works / Pricing / Contact）
+   ====================================================== */
+
+/* セクションの上下余白（全体のリズム） */
+.section{
+  padding: 88px 0;
+}
+@media (max-width: 600px){
+  .section{ padding: 64px 0; }
+}
+
+/* 3カラム → 2 → 1 */
+.grid3{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  align-items: start;
+}
+@media (max-width: 1024px){
+  .grid3{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 767px){
+  .grid3{ grid-template-columns: 1fr; }
+}
+
+/* -------------------------
+   Works
+-------------------------- */
+.section--full .container.works-container{
+  max-width: 1500px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 100px 0;
+}
+
+/* ✅ 重要：Worksカードを“必要な高さ”に（Pricingが沈む原因を潰す） */
+#works .works-container .card{
+  min-height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+/* Works画像 */
+#works .works-container .card img{
+  width: 100%;
+  height: 220px;      /* まず固定でOK（後で調整） */
+  object-fit: cover;
+  display: block;
+}
+
+/* -------------------------
+   Pricing
+-------------------------- */
+#pricing .plan.card{
+  padding: 22px;
+  min-height: auto;
+  display: block; /* Worksカードのflex設計と混ざらないように */
+}
+
+#pricing .plan h3{
+  margin: 0 0 6px;
+  font-size: 22px;
+}
+#pricing .plan p{
+  margin: 0 0 12px;
+  opacity: .9;
+}
+#pricing .plan .price{
+  font-size: 20px;
+  font-weight: 700;
+}
+
+/* -------------------------
+   Contact
+-------------------------- */
+.container.narrow{
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+#contact .container{
+  display: block;
+}
+
+.form{
+  display: grid;
+  gap: 14px;
+}
+.form label{
+  display: grid;
+  gap: 6px;
+  font-weight: 600;
+}
+.form input,
+.form textarea{
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(15,23,42,.55);
+  color: var(--text);
+  font: inherit;
+}
+.form .btn{
+  width: fit-content;
+  padding: 10px 16px;
+}
 
 /* =========================================================
    9) DEBUG（必要な時だけON）
