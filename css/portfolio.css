@@ -1,8 +1,8 @@
 @charset "UTF-8";
 
 /* =========================================================
-   0) 変数（テーマカラー / 幅）
-   ====================================================== */
+  0) 変数
+====================================================== */
 :root{
   --bg:#0F172A;
   --surface:#172554;
@@ -10,19 +10,24 @@
   --muted:#334155;
   --accent:#93C5FD;
   --accent2:#C4B5FD;
+
   --w:1120px;
 
-  /* ナビゲーション */
+  /* ナビ */
   --nav-base:#e8dfcc;
   --nav-hover:#a5f3fc;
+
+  /* セクション余白（ここだけ触れば全体が揃う） */
+  --section-pad: 72px;     /* PC */
+  --section-pad-sp: 56px;  /* SP */
+  --stack-gap: 24px;       /* Works→Pricingの間など */
 }
 
 /* =========================================================
-   1) リセット / ベース
-   ====================================================== */
+  1) リセット / ベース
+====================================================== */
 *{ box-sizing:border-box; }
-html, body{ margin:0; }
-html, body{ overflow-x:hidden; }
+html,body{ margin:0; overflow-x:hidden; }
 
 body{
   font:16px/1.7 system-ui,-apple-system,Segoe UI,Roboto,"Noto Sans JP",sans-serif;
@@ -30,7 +35,9 @@ body{
   color:var(--text);
 }
 
-/* コンテンツの横幅と左右パディング */
+img{ max-width:100%; display:block; }
+
+/* コンテンツ幅 */
 .container{
   max-width:var(--w);
   margin:0 auto;
@@ -38,8 +45,8 @@ body{
 }
 
 /* =========================================================
-   2) ヘッダー（ナビゲーション）
-   ====================================================== */
+  2) ヘッダー
+====================================================== */
 .site-header{
   position:sticky;
   top:0;
@@ -89,7 +96,6 @@ body{
   text-shadow:0 0 10px currentColor,0 0 18px currentColor;
 }
 
-/* モバイル用トグル */
 .nav-toggle{
   display:none;
   border:1px solid rgba(255,255,255,.25);
@@ -99,9 +105,7 @@ body{
   border-radius:.5rem;
 }
 
-/* =========================================================
-   2.1) ヘッダー：タブレット（iPad mini含む）でスリム化
-   ====================================================== */
+/* タブレット */
 @media (max-width:1024px){
   .site-header{ padding:10px 0; }
   .site-header .container{
@@ -110,15 +114,10 @@ body{
     gap:16px;
   }
   .brand{ font-size:24px; }
-  .nav a{
-    font-size:18px;
-    margin:0 8px;
-  }
+  .nav a{ font-size:18px; margin:0 8px; }
 }
 
-/* =========================================================
-   2.2) ヘッダー：モバイルメニュー（〜600px）
-   ====================================================== */
+/* モバイルメニュー */
 @media (max-width:600px){
   .nav-toggle{ display:inline-block; }
 
@@ -130,6 +129,7 @@ body{
     border:1px solid rgba(255,255,255,.08);
     border-radius:12px;
     padding:12px 14px;
+
     display:block;
     width:min(82vw,320px);
 
@@ -158,8 +158,8 @@ body{
 }
 
 /* =========================================================
-   3) ヒーローセクション（統一版：ここだけ触る）
-   ====================================================== */
+  3) ヒーロー（あなたの既存構造を尊重）
+====================================================== */
 .hero{
   position:relative;
   overflow:hidden;
@@ -185,56 +185,50 @@ body{
 }
 
 @media (min-width:901px){
-  .hero-grid{
-    grid-template-columns:minmax(0,520px) minmax(0,1fr);
-  }
+  .hero-grid{ grid-template-columns:minmax(0,520px) minmax(0,1fr); }
   .hero-text,.hero-media{ justify-self:stretch; }
 }
 
-.hero-text{
-  text-align:left;
-  max-width:80ch;
-}
-
+.hero-text{ text-align:left; max-width:80ch; }
 .hero-media{ margin:0; }
 
 .hero-media img{
   width:100%;
   height:auto;
-  max-width:100%;
   max-height:min(56vh,520px);
   object-fit:cover;
   border-radius:16px;
   box-shadow:0 10px 30px rgba(0,0,0,.25);
-  display:block;
 }
 
-/* 背景アニメ等がある場合 */
+/* 背景アニメ */
 .wiggle{ z-index:0; inset:-25%; }
 .hero .container,
 .hero-grid{ position:relative; z-index:1; }
 
 /* =========================================================
-   4) セクション共通（Works / Pricing / Contact）
-   ====================================================== */
+  4) セクション共通（ここで全体のリズムを支配）
+====================================================== */
 .section{
-  padding:88px 0;
+  padding:var(--section-pad) 0;
 }
+
 @media (max-width:600px){
-  .section{ padding:64px 0; }
+  .section{ padding:var(--section-pad-sp) 0; }
 }
 
 .section h2{
   margin:0 0 18px;
 }
 
-/* 3カラム → 2 → 1 */
+/* 3カラム→2→1（共通） */
 .grid3{
   display:grid;
   grid-template-columns:repeat(3, minmax(0,1fr));
   gap:20px;
-  align-items:start;
+  align-items:start; /* ← これで “縦揃わない” 系の事故をまず止める */
 }
+
 @media (max-width:1024px){
   .grid3{ grid-template-columns:repeat(2, minmax(0,1fr)); }
 }
@@ -243,89 +237,82 @@ body{
 }
 
 /* =========================================================
-   4.1) Works（Coming Soon）
-   ====================================================== */
+  5) カード共通（Works/Pricing/Contactで見た目が揃う）
+====================================================== */
+.card{
+  background: rgba(255,255,255,.02);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 16px;
+  padding: 18px;
+}
+
+/* 見出し等のデフォルトマージン事故を止める */
+.card h3{ margin:0 0 6px; }
+.card p{  margin:0; opacity:.9; }
+
+/* =========================================================
+  6) Works（Coming Soon）
+====================================================== */
+/* Worksだけ横幅広げる */
 .section--full .container.works-container{
   max-width:1500px;
   width:100%;
-  margin:0 auto;
-  padding:100px 0;
-}
-/* Worksの余白を詰める（Pricingが沈む問題の本命） */
-.section--full .container.works-container{
-  padding: 40px 0;   /* 100px → 40px に */
 }
 
-/* Worksの下に余白を作るなら “ここだけ” にする */
-#works{
-  padding-bottom: 24px;
+/* ★ここが本丸：Worksの上下余白を小さくして “Pricingが沈む” を潰す */
+#works.section{
+  padding-bottom: 0;                  /* Worksの下を詰める */
+}
+#works .works-container{
+  padding-top: 24px;                  /* 上は少しだけ */
+  padding-bottom: var(--stack-gap);   /* Pricingとの距離をここで管理 */
 }
 
-/* Pricingは上を詰める */
-#pricing{
-  padding-top: 24px;
-}
-
-
-/* ✅重要：Worksカードを“必要な高さ”に固定（Pricingが沈む原因を根絶） */
+/* Worksカードは「必要高さ」だけ */
 #works .works-container .card{
-  min-height:auto;
   display:flex;
   flex-direction:column;
   justify-content:flex-start;
   gap:10px;
 }
 
-/* Coming Soon 画像を安定させる */
+/* 画像は高さ固定で揃える（縦のズレの原因を消す） */
 #works .works-container .card img{
   width:100%;
-  height:220px;       /* 200〜260で好みに調整 */
+  height:220px;        /* 200〜260で好みに調整 */
   object-fit:cover;
-  display:block;
-}
-
-/* Works 内のテキスト整形 */
-#works .works-container .card h3{
-  margin:0;
-  font-size:20px;
-}
-#works .works-container .card p{
-  margin:0;
-  opacity:.9;
+  border-radius: 12px;
 }
 
 /* =========================================================
-   4.2) Pricing（Worksの.card設計と混ざらないように隔離）
-   ====================================================== */
+  7) Pricing（Worksの影響を受けないよう隔離）
+====================================================== */
+/* ★Pricingの上を詰める（Worksの直後にキュッと上がる） */
+#pricing.section{
+  padding-top: 0;
+}
+
+/* Pricingカードの中身 */
 #pricing .plan.card{
-  padding:22px;
-  min-height:auto;
+  padding: 22px;
   display:block; /* flexの影響を切る */
 }
 
-#pricing .plan h3{
-  margin:0 0 6px;
-  font-size:22px;
-}
-#pricing .plan p{
-  margin:0 0 12px;
-  opacity:.9;
-}
 #pricing .plan .price{
   font-size:20px;
   font-weight:700;
+  margin-top: 10px;
 }
 
 /* =========================================================
-   4.3) Contact
-   ====================================================== */
+  8) Contact
+====================================================== */
 .container.narrow{
   max-width:720px;
   margin:0 auto;
   padding:0 16px;
 }
 
-/* Contact はレイアウト干渉を遮断 */
 #contact .container{ display:block; }
 
 .form{
@@ -356,8 +343,8 @@ body{
 }
 
 /* =========================================================
-   5) タイポグラフィ
-   ====================================================== */
+  9) タイポ
+====================================================== */
 .h1{
   font-size:clamp(24px,4vw,40px);
   margin:.2em 0;
@@ -365,8 +352,8 @@ body{
 .lead{ opacity:.9; }
 
 /* =========================================================
-   6) ボタン / コンポーネント
-   ====================================================== */
+  10) ボタン
+====================================================== */
 .btn{
   display:inline-block;
   padding:10px 14px;
@@ -380,8 +367,8 @@ body{
 }
 
 /* =========================================================
-   7) フッター
-   ====================================================== */
+  11) フッター
+====================================================== */
 footer{
   opacity:.8;
   padding:24px 0;
@@ -389,8 +376,8 @@ footer{
 }
 
 /* =========================================================
-   8) アニメーション / ユーティリティ
-   ====================================================== */
+  12) アニメーション
+====================================================== */
 .reveal{
   opacity:0;
   transform:translateY(12px);
@@ -400,68 +387,16 @@ footer{
   opacity:1;
   transform:none;
 }
-/* ===== 強制：Works下の空白を消してPricingを上に詰める（末尾に置く） ===== */
-
-/* Worksコンテナの上下余白を潰す（ここが“謎の空白”の本命） */
-.section--full .container.works-container{
-  padding: 24px 0 !important;  /* 100px等を強制上書き */
-}
-
-/* Worksセクション自体の下余白も潰す */
-#works{
-  padding-bottom: 0 !important;
-  margin-bottom: 0 !important;
-}
-
-/* Pricingを上に詰める */
-#pricing{
-  padding-top: 24px !important;
-  margin-top: 0 !important;
-}
-
-/* Pricingの中身は上揃えに固定 */
-#pricing .grid3{
-  align-items: start !important;
-}
-#pricing{
-  min-height: auto !important;
-  display: block !important;
-}
 
 /* =========================================================
-   9) DEBUG（必要な時だけON）
-   ====================================================== */
+  99) DEBUG（必要な時だけON）
+  ※ONにするなら、下だけコメントアウト解除
+====================================================== */
 /*
-.hero-grid{ outline:4px solid hotpink; }
-.hero-text{ outline:4px solid cyan; }
-.hero-media{ outline:4px solid yellow; }
-
-#works .card{
-  background:rgba(0,255,255,.12) !important;
-  outline:3px solid rgba(255,0,255,.9) !important;
-}
-#works .grid3{
-  outline:3px dashed rgba(255,255,0,.9) !important;
-}
-*/
-/* =========================
-   DEBUG: レイアウト可視化
-   （終わったら消す/コメントアウト）
-========================= */
-
-/* 全要素うっすら枠 */
 * { outline: 1px dashed rgba(255,255,255,.08); }
-
-/* セクション単位（どこがどこまでか） */
-#works   { outline: 4px solid rgba(255,  0, 255, .9) !important; } /* マゼンタ */
-#pricing { outline: 4px solid rgba(  0,255,255, .9) !important; } /* シアン */
-#contact { outline: 4px solid rgba(255,255,  0, .9) !important; } /* イエロー */
-
-/* コンテナ系 */
-.works-container { outline: 4px solid rgba(  0,255,  0, .9) !important; } /* グリーン */
-.container       { outline: 2px solid rgba(255,255,255,.25) !important; }
-
-/* グリッドとカード */
-.grid3 { outline: 4px dashed rgba(255,120,  0,.9) !important; } /* オレンジ */
-.card  { outline: 3px solid rgba(120,180,255,.9) !important; } /* 水色 */
-.plan  { outline: 3px dashed rgba(255,180,255,.9) !important; } /* ピンク */
+#works   { outline: 4px solid rgba(255,  0,255,.9) !important; }
+#pricing { outline: 4px solid rgba(  0,255,255,.9) !important; }
+#contact { outline: 4px solid rgba(255,255,  0,.9) !important; }
+.grid3   { outline: 4px dashed rgba(255,120,  0,.9) !important; }
+.card    { outline: 3px solid rgba(120,180,255,.9) !important; }
+*/
