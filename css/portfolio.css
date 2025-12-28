@@ -253,15 +253,7 @@ body {
   .grid3{ grid-template-columns: 1fr; }
 }
 
-/* Worksカード */
-/*.section--full .works-container .card {
-  padding: 18px;
-  min-height: 450px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  gap: 10px;
-}*/
+
 /* =========================================================
    4.x) Pricing / Contact を整える（不足分を追加）
    ====================================================== */
