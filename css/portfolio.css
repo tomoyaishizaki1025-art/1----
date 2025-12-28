@@ -254,13 +254,92 @@ body {
 }
 
 /* Worksカード */
-.section--full .works-container .card {
+/*.section--full .works-container .card {
   padding: 18px;
   min-height: 450px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   gap: 10px;
+}*/
+/* =========================================================
+   4.x) Pricing / Contact を整える（不足分を追加）
+   ====================================================== */
+
+/* セクションの上下余白（Pricing/Contactが詰まって見えるのを防ぐ） */
+.section{
+  padding: 88px 0;
+}
+
+/* 見出しがあるなら上の詰まり防止用（任意） */
+.section h2{
+  margin: 0 0 18px;
+}
+
+/* Pricingカード：works用cardの影響を受けても崩れないように */
+#pricing .card{
+  padding: 22px;
+  min-height: auto;           /* Worksの min-height:450px を打ち消す */
+  justify-content: flex-start;/* Worksの justify-content:end を打ち消す */
+  gap: 10px;
+}
+
+#pricing .plan h3{
+  margin: 0 0 6px;
+  font-size: 22px;
+}
+
+#pricing .plan p{
+  margin: 0 0 12px;
+  opacity: .9;
+}
+
+#pricing .plan .price{
+  font-size: 20px;
+  font-weight: 700;
+}
+
+/* Contact: narrow が未定義なので追加 */
+.container.narrow{
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* フォームを縦並びにする（ここが崩れの本丸） */
+.form{
+  display: grid;
+  gap: 14px;
+}
+
+/* label が横詰まりしないよう block 化 */
+.form label{
+  display: grid;
+  gap: 6px;
+  font-weight: 600;
+}
+
+/* 入力は幅100% */
+.form input,
+.form textarea{
+  width: 100%;
+  padding: 12px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(15,23,42,.55);
+  color: var(--text);
+  font: inherit;
+}
+
+/* 送信ボタンを見やすく */
+.form .btn{
+  width: fit-content;
+  padding: 10px 16px;
+}
+
+/* モバイルでの余白微調整（任意） */
+@media (max-width: 600px){
+  .section{ padding: 64px 0; }
 }
 
 .section--full .works-container .card img {
