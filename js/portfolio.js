@@ -18,10 +18,16 @@
   const $navToggle = document.querySelector(sel.navToggle);
   const $nav = document.querySelector(sel.nav);
 
+  // nav内のリンク（メニュー開閉やフォーカス用）
+  const getNavLinks = () => ($nav ? Array.from($nav.querySelectorAll('a[href]')) : []);
+
   /* =========================================================
    *  B. Motion トグル（背景アニメの一時停止/再開）
    * ======================================================= */
   if ($toggle && $wiggle) {
+    // 初期表示整形（任意）
+    $toggle.setAttribute('aria-pressed', 'false');
+
     $toggle.addEventListener('click', () => {
       const paused = $wiggle.style.animationPlayState === 'paused';
       $wiggle.style.animationPlayState = paused ? 'running' : 'paused';
@@ -32,12 +38,28 @@
 
   /* =========================================================
    *  C. スクロールで要素をふわっと表示（IntersectionObserver）
+   *  - “少し手前”で発火させると自然（rootMargin）
    * ======================================================= */
-  const io = new IntersectionObserver(
-    entries => entries.forEach(e => e.isIntersecting && e.target.classList.add('is-visible')),
-    { threshold: 0.15 }
-  );
-  document.querySelectorAll(sel.revealTargets).forEach(el => io.observe(el));
+  const revealEls = document.querySelectorAll(sel.revealTargets);
+  if (revealEls.length) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (!e.isIntersecting) return;
+          e.target.classList.add('is-visible');
+
+          // 一度出したら監視解除（軽量化）
+          io.unobserve(e.target);
+        });
+      },
+      {
+        threshold: 0.10,
+        rootMargin: '0px 0px -8% 0px', // 少し手前で発火
+      }
+    );
+
+    revealEls.forEach((el) => io.observe(el));
+  }
 
   /* =========================================================
    *  D. ヘッダー高さ（アンカー時のズレ対策）
@@ -56,8 +78,51 @@
     window.scrollTo({ top: y, behavior: 'smooth' });
   };
 
-  document.querySelectorAll(sel.inPageLinks).forEach(a => {
-    a.addEventListener('click', e => {
+  // リロード時に # が付いてても最下部に飛ばないように（既存維持）
+  window.addEventListener('DOMContentLoaded', () => {
+    if (location.hash) {
+      history.replaceState(null, '', location.pathname + location.search);
+      window.scrollTo(0, 0);
+    }
+  });
+
+  /* =========================================================
+   *  F. モバイルナビ開閉（全画面オーバーレイ想定）
+   *  - 背景スクロール禁止：body.nav-open
+   *  - aria / フォーカス最低限整備
+   * ======================================================= */
+  const openMenu = () => {
+    if (!$nav || !$navToggle) return;
+
+    $nav.classList.add('is-open');
+    document.body.classList.add('nav-open'); // ★追加：背景スクロール禁止
+
+    $navToggle.setAttribute('aria-expanded', 'true');
+    $nav.setAttribute('aria-hidden', 'false');
+
+    // 最初のリンクへフォーカス（キーボード操作配慮）
+    const links = getNavLinks();
+    if (links[0]) links[0].focus({ preventScroll: true });
+  };
+
+  const closeMenu = () => {
+    if (!$nav || !$navToggle) return;
+
+    $nav.classList.remove('is-open');
+    document.body.classList.remove('nav-open'); // ★追加
+
+    $navToggle.setAttribute('aria-expanded', 'false');
+    $nav.setAttribute('aria-hidden', 'true');
+
+    // トグルボタンへ戻す
+    $navToggle.focus({ preventScroll: true });
+  };
+
+  const isMenuOpen = () => $nav?.classList.contains('is-open');
+
+  // a[href^="#"] をクリックしたらスムーススクロール + メニュー閉じる
+  document.querySelectorAll(sel.inPageLinks).forEach((a) => {
+    a.addEventListener('click', (e) => {
       const href = a.getAttribute('href');
       if (!href || href === '#') return;
 
@@ -71,36 +136,16 @@
       history.replaceState(null, '', location.pathname + location.search);
 
       // モバイルメニューは閉じる
-      closeMenu();
+      if (isMenuOpen()) closeMenu();
     });
   });
 
-  // リロード時に # が付いてても最下部に飛ばないように
-  window.addEventListener('DOMContentLoaded', () => {
-    if (location.hash) {
-      history.replaceState(null, '', location.pathname + location.search);
-      window.scrollTo(0, 0);
-    }
-  });
-
-  /* =========================================================
-   *  F. モバイルナビ開閉（黒い板の暴走を防ぐ）
-   * ======================================================= */
-  const openMenu = () => {
-    if (!$nav || !$navToggle) return;
-    $nav.classList.add('is-open');
-    $navToggle.setAttribute('aria-expanded', 'true');
-  };
-
-  const closeMenu = () => {
-    if (!$nav || !$navToggle) return;
-    $nav.classList.remove('is-open');
-    $navToggle.setAttribute('aria-expanded', 'false');
-  };
-
-  const isMenuOpen = () => $nav?.classList.contains('is-open');
-
+  // ナビ開閉のイベント
   if ($navToggle && $nav) {
+    // 初期状態（念のため）
+    $nav.setAttribute('aria-hidden', 'true');
+    $navToggle.setAttribute('aria-expanded', 'false');
+
     $navToggle.addEventListener('click', (e) => {
       e.stopPropagation();
       isMenuOpen() ? closeMenu() : openMenu();
@@ -120,13 +165,17 @@
     });
 
     // スクロールしたら閉じる（“黒い板が残る”体験を消す）
-    window.addEventListener('scroll', () => {
-      if (isMenuOpen()) closeMenu();
-    }, { passive: true });
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (isMenuOpen()) closeMenu();
+      },
+      { passive: true }
+    );
 
     // リサイズでPC幅になったら閉じる
     window.addEventListener('resize', () => {
-      if (window.matchMedia('(min-width: 601px)').matches) closeMenu();
+      if (window.matchMedia('(min-width: 601px)').matches && isMenuOpen()) closeMenu();
     });
   }
 })();
