@@ -1,27 +1,28 @@
 @charset "UTF-8";
 
 /* =========================================================
-  0) Variables
+  0) Variables（※ここを1箇所に統合：衝突を消す）
 ========================================================= */
 :root{
-  --bg:#0F172A;
-  --surface:#172554;
-  --text:#E5E7EB;
-  --muted:#94A3B8;
+  /* 明るめ・やさしい配色（プードル系に寄せる） */
+  --bg:#F6F8FF;
+  --surface:#FFFFFF;
+  --text:#0F172A;
+  --muted:#475569;
 
-  --accent:#93C5FD;
+  --accent:#7DD3FC;
   --accent2:#C4B5FD;
 
   --w:1120px;
 
-  --nav-base:#e8dfcc;
-  --nav-hover:#a5f3fc;
+  --nav-base:#0F172A;
+  --nav-hover:#2563EB;
 
   --radius:22px;
   --radius-sm:16px;
 
-  --border: rgba(255,255,255,.10);
-  --border-strong: rgba(255,255,255,.14);
+  --border: rgba(15,23,42,.10);
+  --border-strong: rgba(15,23,42,.16);
 
   /* デバッグ水平線の位置（px）。揃い確認で数値を動かす */
   --debug-line-y: 420px;
@@ -36,7 +37,10 @@ html,body{ overflow-x:hidden; }
 
 body{
   font:16px/1.7 system-ui,-apple-system,Segoe UI,Roboto,"Noto Sans JP",sans-serif;
-  background:var(--bg);
+  background:
+    radial-gradient(900px 520px at 18% 12%, rgba(125,211,252,.35), transparent 55%),
+    radial-gradient(820px 520px at 88% 18%, rgba(196,181,253,.30), transparent 55%),
+    linear-gradient(#F6F8FF, #EEF2FF);
   color:var(--text);
 }
 
@@ -49,127 +53,141 @@ img{ max-width:100%; height:auto; display:block; }
   padding:0 16px;
 }
 
-/* Base card (共通の見た目だけ) */
+/* Base card */
 .card{
-  background: rgba(255,255,255,.03);
+  background: rgba(255,255,255,.85);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  box-shadow: 0 10px 28px rgba(0,0,0,.22);
+  box-shadow: 0 14px 30px rgba(15,23,42,.10);
 }
 
 /* =========================================================
-  2) Header / Nav
+  2) Header / Nav（追従：stickyのまま）
 ========================================================= */
 .site-header{
-  position:sticky;
-  top:0;
-  z-index:10;
-  width:100%;
-  padding:20px 0;
-  background:linear-gradient(90deg,#1e1b4b 0%,#312e81 100%);
-  backdrop-filter:blur(8px);
+  position: sticky;
+  top: 0;
+  z-index: 10000;
+  width: 100%;
+  padding: 14px 0;
+  background: linear-gradient(90deg,#DCEBFF 0%, #E9D8FF 100%);
+  border-bottom: 1px solid rgba(15,23,42,.06);
+  backdrop-filter: blur(12px);
 }
 
 .site-header .container{
   display:flex;
   align-items:center;
-  gap:24px;
-  min-height:72px;
-  padding:0 32px;
+  gap: 18px;
+  min-height: 64px;
+  padding: 0 24px;
 }
 
 .brand{
   margin-right:auto;
-  font-size:40px;
-  font-weight:700;
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: .2px;
+  color: var(--text);
 }
 
+/* Desktop nav */
 .nav{
   display:flex;
-  gap:28px;
+  gap: 22px;
   margin-left:auto;
 }
 
 .nav a{
   display:inline-block;
-  color:var(--nav-base);
+  color: var(--nav-base);
   text-decoration:none;
   font-family:"Noto Sans JP","Inter",sans-serif;
-  font-size:30px;
-  font-weight:600;
-  letter-spacing:.5px;
-  margin:0 15px;
-  transition:color .25s ease,transform .25s ease,text-shadow .25s ease;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing:.4px;
+  padding: 10px 10px;
+  border-radius: 12px;
+  transition: color .2s ease, transform .2s ease, background .2s ease;
 }
 
 .nav a:hover,
 .nav a:focus{
-  color:var(--nav-hover);
-  transform:translateY(-1px) scale(1.06);
-  text-shadow:0 0 10px currentColor,0 0 18px currentColor;
+  color: var(--nav-hover);
+  background: rgba(37,99,235,.08);
+  transform: translateY(-1px);
 }
 
+/* Menu button */
 .nav-toggle{
   display:none;
-  border:1px solid rgba(255,255,255,.25);
-  background:transparent;
-  color:#fff;
-  padding:.4rem .7rem;
-  border-radius:.5rem;
+  border: 1px solid rgba(15,23,42,.14);
+  background: rgba(255,255,255,.55);
+  color: var(--text);
+  padding: .55rem .85rem;
+  border-radius: .75rem;
+  font-weight: 700;
 }
 
 /* Tablet */
 @media (max-width:1024px){
-  .site-header{ padding:10px 0; }
+  .site-header{ padding: 10px 0; }
   .site-header .container{
-    min-height:56px;
-    padding:0 16px;
-    gap:16px;
+    min-height: 56px;
+    padding: 0 16px;
+    gap: 12px;
   }
-  .brand{ font-size:24px; }
-  .nav a{
-    font-size:18px;
-    margin:0 8px;
-  }
+  .brand{ font-size: 24px; }
+  .nav a{ font-size: 18px; padding: 10px 8px; }
 }
 
-/* Mobile menu */
+/* =========================================================
+  2.1) Mobile Nav Overlay（全画面・文字大きく・押しやすく）
+  - JSが .is-open を付け外しする前提（今の実装のままでOK）
+========================================================= */
 @media (max-width:600px){
-  .nav-toggle{ display:inline-block; }
+  .brand{ font-size: 18px; }
+  .nav-toggle{ display:inline-flex; align-items:center; gap:6px; }
 
+  /* 全画面オーバーレイ */
   .nav{
-    position:absolute;
-    right:16px;
-    top:calc(100% + 8px);
-    background:rgba(10,12,28,.95);
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:12px;
-    padding:12px 14px;
-    display:block;
-    width:min(82vw,320px);
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
 
-    transform:translateY(-16px);
-    opacity:0;
-    pointer-events:none;
-    transition:opacity .2s ease,transform .2s ease;
+    /* ヘッダーの下から出す */
+    padding: 92px 18px 24px;
 
-    box-shadow:0 10px 24px rgba(0,0,0,.35);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    background: rgba(255,255,255,.82);
+    backdrop-filter: blur(16px);
+
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-8px);
+    transition: opacity .22s ease, transform .22s ease;
   }
 
-  .brand{ font-size:18px; }
-
   .nav a{
-    display:block;
-    padding:10px 6px;
-    font-size:16px;
-    margin:0;
+    font-size: 20px;
+    padding: 16px 14px; /* タップ領域大きく */
+    margin: 0;
+    background: rgba(255,255,255,.72);
+    border: 1px solid rgba(15,23,42,.10);
+    border-radius: 16px;
   }
 
   .nav.is-open{
-    transform:translateY(0);
-    opacity:1;
-    pointer-events:auto;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
   }
+
+  /* 任意：JSで body.nav-open を付けるとスクロール禁止にできる */
+  body.nav-open{ overflow: hidden; }
 }
 
 /* =========================================================
@@ -178,30 +196,30 @@ img{ max-width:100%; height:auto; display:block; }
 .hero{
   position:relative;
   overflow:hidden;
-  min-height:90vh;
+  min-height: 90vh;
   display:grid;
   place-items:center;
-  padding:clamp(24px,4vw,56px) 0;
+  padding: clamp(24px,4vw,56px) 0;
 }
 
 .hero-grid{
-  max-width:1120px;
-  margin:0 auto;
-  padding:0 16px;
-  display:grid;
-  gap:clamp(16px,3vw,56px);
-  align-items:center;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 16px;
+  display: grid;
+  gap: clamp(16px,3vw,56px);
+  align-items: center;
 }
 
 @media (max-width:900px){
-  .hero-grid{ grid-template-columns:1fr; }
+  .hero-grid{ grid-template-columns: 1fr; }
   .hero-text{ order:1; text-align:left; max-width:68ch; }
   .hero-media{ order:2; display:flex; justify-content:center; }
 }
 
 @media (min-width:901px){
   .hero-grid{
-    grid-template-columns:minmax(0,520px) minmax(0,1fr);
+    grid-template-columns: minmax(0,520px) minmax(0,1fr);
   }
   .hero-text,.hero-media{ justify-self:stretch; }
 }
@@ -214,79 +232,71 @@ img{ max-width:100%; height:auto; display:block; }
 .hero-media{ margin:0; }
 
 .hero-media img{
-  width:100%;
-  max-height:min(56vh,520px);
-  object-fit:cover;
-  border-radius:16px;
-  box-shadow:0 10px 30px rgba(0,0,0,.25);
+  width: 100%;
+  max-height: min(56vh,520px);
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 14px 32px rgba(15,23,42,.14);
+  border: 1px solid rgba(15,23,42,.08);
 }
 
-/* 背景アニメがある場合（そのまま） */
-.wiggle{ z-index:0; inset:-25%; }
+/* 背景アニメがある場合（そのまま・薄め） */
+.wiggle{ z-index:0; inset:-25%; opacity: .18; }
 .hero-grid{ position:relative; z-index:1; }
 
 /* =========================================================
   4) Sections (Works / Pricing / Contact)
 ========================================================= */
-.section{
-  padding:88px 0;
-}
+.section{ padding: 88px 0; }
 @media (max-width:600px){
-  .section{ padding:64px 0; }
+  .section{ padding: 64px 0; }
 }
 
-.section h2{
-  margin:0 0 18px;
-}
+.section h2{ margin:0 0 18px; }
 
 /* Grid */
 .grid3{
   display:grid;
-  grid-template-columns:repeat(3, minmax(0,1fr));
-  gap:24px;
-  align-items:stretch; /* ✅ 行内カードの高さを揃える */
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 24px;
+  align-items: stretch;
 }
-
 @media (max-width:1024px){
-  .grid3{ grid-template-columns:repeat(2, minmax(0,1fr)); }
+  .grid3{ grid-template-columns: repeat(2, minmax(0,1fr)); }
 }
 @media (max-width:767px){
-  .grid3{ grid-template-columns:1fr; }
+  .grid3{ grid-template-columns: 1fr; }
 }
 
 /* =========================================================
   4.1) Works (Coming Soon)
-  - ここで“縦揃い”を確実に固定する
 ========================================================= */
 .section--full .container.works-container{
-  max-width:1500px;
-  width:100%;
-  margin:0 auto;
-  padding:56px 16px; /* ✅ 上下余白はここで一元管理 */
+  max-width: 1500px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 56px 16px;
 }
 
-/* ✅ Worksカード：構造を固定（これで毎回同じ位置から文字が始まる） */
 #works .works-container .card{
   display:flex;
   flex-direction:column;
-  padding:18px;
-  gap:14px;                 /* 画像→テキスト間隔を固定 */
+  padding: 18px;
+  gap: 14px;
   overflow:hidden;
 }
 
-/* ✅ 画像：高さを “比率” で統一（画面幅に応じて自然に揃う） */
 #works .works-container .card img{
   width:100%;
-  aspect-ratio: 16 / 9;     /* ← ここがポイント（全カード同じ比率） */
+  aspect-ratio: 16 / 9;
   object-fit:cover;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border);
 }
 
-/* ✅ テキストの開始位置と余白を固定 */
 #works .works-container .card h3{
   margin:0;
-  font-size:20px;
+  font-size: 20px;
   line-height:1.35;
 }
 #works .works-container .card p{
@@ -294,122 +304,126 @@ img{ max-width:100%; height:auto; display:block; }
   opacity:.9;
 }
 
-/* 「Coming Soon」3枚とPricingの距離感をここで調整（1箇所だけ触る） */
-#works.section{ padding-bottom:32px; }
-#pricing.section{ padding-top:32px; }
+/* WorksとPricingの間隔 */
+#works.section{ padding-bottom: 32px; }
+#pricing.section{ padding-top: 32px; }
 
 /* =========================================================
   4.2) Pricing
 ========================================================= */
 #pricing .plan.card{
-  padding:22px;
+  padding: 22px;
   display:flex;
   flex-direction:column;
-  gap:10px;
+  gap: 10px;
 }
 
 #pricing .plan h3{
   margin:0;
-  font-size:22px;
+  font-size: 22px;
 }
 #pricing .plan p{
   margin:0;
   opacity:.9;
 }
 #pricing .plan .price{
-  font-size:20px;
-  font-weight:700;
+  font-size: 20px;
+  font-weight: 800;
 }
 
 /* =========================================================
   4.3) Contact
 ========================================================= */
 .container.narrow{
-  max-width:720px;
-  margin:0 auto;
-  padding:0 16px;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 16px;
 }
 
 #contact .container{ display:block; }
 
-.form{
-  display:grid;
-  gap:14px;
-}
+.form{ display:grid; gap: 14px; }
 
 .form label{
   display:grid;
-  gap:6px;
-  font-weight:600;
+  gap: 6px;
+  font-weight: 700;
+  color: var(--text);
 }
 
 .form input,
 .form textarea{
-  width:100%;
-  padding:12px;
-  border-radius:10px;
-  border:1px solid rgba(255,255,255,.16);
-  background:rgba(15,23,42,.55);
-  color:var(--text);
-  font:inherit;
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(15,23,42,.14);
+  background: rgba(255,255,255,.92);
+  color: var(--text);
+  font: inherit;
 }
 
 .form .btn{
-  width:fit-content;
-  padding:10px 16px;
+  width: fit-content;
+  padding: 10px 16px;
 }
 
 /* =========================================================
   5) Typography
 ========================================================= */
 .h1{
-  font-size:clamp(24px,4vw,40px);
-  margin:.2em 0;
+  font-size: clamp(24px,4vw,40px);
+  margin: .2em 0;
 }
-.lead{ opacity:.9; }
+.lead{ opacity: .9; }
 
 /* =========================================================
   6) Buttons
 ========================================================= */
 .btn{
   display:inline-block;
-  padding:10px 14px;
-  border-radius:10px;
-  border:1px solid rgba(255,255,255,.2);
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(15,23,42,.14);
+  background: #fff;
+  color: var(--text);
+  text-decoration:none;
 }
+
 .btn-primary{
-  border-color:transparent;
-  background:linear-gradient(90deg,var(--accent),var(--accent2));
-  color:#0b1120;
+  border-color: transparent;
+  background: linear-gradient(90deg,var(--accent),var(--accent2));
+  color: #0B1020;
+  box-shadow: 0 10px 22px rgba(37,99,235,.12);
 }
 
 /* =========================================================
   7) Footer
 ========================================================= */
 footer{
-  opacity:.8;
-  padding:24px 0;
-  border-top:1px solid rgba(255,255,255,.06);
+  opacity: .9;
+  padding: 24px 0;
+  border-top: 1px solid rgba(15,23,42,.08);
+  color: rgba(15,23,42,.70);
 }
 
 /* =========================================================
-  8) Reveal animation
+  8) Reveal animation（ゆっくり）
 ========================================================= */
 .reveal{
-  opacity:0;
-  transform:translateY(12px);
-  transition:opacity .5s, transform .5s;
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 1.4s ease, transform 1.4s ease;
+  will-change: opacity, transform;
 }
 .reveal.is-visible{
-  opacity:1;
-  transform:none;
+  opacity: 1;
+  transform: none;
 }
 
 /* =========================================================
   9) DEBUG（必要な時だけON）
-  - body に class="debug" を付けると発動
 ========================================================= */
-body.debug *{ outline: 1px dashed rgba(255,255,255,.08); }
+body.debug *{ outline: 1px dashed rgba(15,23,42,.10); }
 
 body.debug #works{ outline: 4px solid rgba(255,  0,255,.9) !important; }
 body.debug #pricing{ outline: 4px solid rgba(  0,255,255,.9) !important; }
@@ -419,7 +433,6 @@ body.debug .works-container{ outline: 4px solid rgba(0,255,0,.9) !important; }
 body.debug .grid3{ outline: 4px dashed rgba(255,120,0,.9) !important; }
 body.debug .card{ outline: 3px solid rgba(120,180,255,.9) !important; }
 
-/* ✅「水平線」：揃いの確認用（位置は --debug-line-y を動かす） */
 body.debug .works-container{
   position: relative;
 }
@@ -432,89 +445,4 @@ body.debug .works-container::after{
   height:2px;
   background: rgba(255, 80, 80, .85);
   pointer-events:none;
-}
-/* ===== 明るめ・やさしい配色（プードル系ファビコンに寄せる）=====
-   このブロックを CSS の一番下に貼り付け（上書き用）
-========================================================= */
-:root{
-  /* 全体を“明るいネイビー→パステル”へ */
-  --bg:#F6F8FF;
-  --surface:#FFFFFF;
-  --text:#0F172A;
-  --muted:#475569;
-
-  /* アクセント：やさしい水色×ラベンダー */
-  --accent:#7DD3FC;
-  --accent2:#C4B5FD;
-
-  --nav-base:#0F172A;
-  --nav-hover:#2563EB;
-
-  --border: rgba(15,23,42,.10);
-  --border-strong: rgba(15,23,42,.16);
-}
-
-/* 背景：ふんわり */
-body{
-  background:
-    radial-gradient(900px 520px at 18% 12%, rgba(125,211,252,.35), transparent 55%),
-    radial-gradient(820px 520px at 88% 18%, rgba(196,181,253,.30), transparent 55%),
-    linear-gradient(#F6F8FF, #EEF2FF);
-  color:var(--text);
-}
-
-/* カード：白っぽく・頼みやすく */
-.card{
-  background: rgba(255,255,255,.85);
-  border: 1px solid var(--border);
-  box-shadow: 0 14px 30px rgba(15,23,42,.10);
-}
-
-/* ヘッダー：暗さを抜いてパステルに */
-.site-header{
-  background:linear-gradient(90deg,#DCEBFF 0%, #E9D8FF 100%);
-  border-bottom:1px solid rgba(15,23,42,.06);
-}
-.brand{ color:#0F172A; }
-.nav a{ color:var(--nav-base); }
-.nav a:hover,.nav a:focus{ color:var(--nav-hover); text-shadow:none; }
-
-/* ボタン：柔らかい水色（押しやすい見た目） */
-.btn{
-  background:#fff;
-  color:var(--text);
-  border:1px solid rgba(15,23,42,.14);
-}
-.btn-primary{
-  background:linear-gradient(90deg,var(--accent),var(--accent2));
-  color:#0B1020;
-  border-color:transparent;
-  box-shadow: 0 10px 22px rgba(37,99,235,.12);
-}
-
-/* 入力：白背景にして心理ハードル下げる */
-.form input,
-.form textarea{
-  background: rgba(255,255,255,.92);
-  color: var(--text);
-  border:1px solid rgba(15,23,42,.14);
-}
-.form label{ color:#0F172A; }
-
-/* Works画像の枠を少し明るく */
-#works .works-container .card img{
-  border:1px solid rgba(15,23,42,.10);
-}
-
-/* フッター：薄め */
-footer{
-  border-top:1px solid rgba(15,23,42,.08);
-  color: rgba(15,23,42,.70);
-}
-
-/* （任意）背景アニメが暗すぎる場合は薄める */
-.wiggle{ opacity:.18; }
-
-@media (max-width:600px){
-  .nav{ background:rgba(255,255,255,.95); }
 }
