@@ -310,6 +310,15 @@ img{ max-width:100%; height:auto; display:block; }
   margin:0;
   opacity:.9;
 }
+#works .works-container .card > img,
+#pricing .pricing-cases .card > img{
+  width:100%;
+  aspect-ratio: 16 / 9;
+  object-fit:cover;
+  object-position: 50% 35%; /* ←追加：上を少し切って“でかく見せる” */
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
 
 /* =========================================================
   4.3) Contact
