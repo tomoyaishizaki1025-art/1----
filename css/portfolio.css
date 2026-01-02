@@ -309,26 +309,33 @@ img{ max-width:100%; height:auto; display:block; }
 #pricing.section{ padding-top: 32px; }
 
 /* =========================================================
-  4.2) Pricing
+  Pricing（作業例カード：Coming Soon と同じ見た目）
 ========================================================= */
-#pricing .plan.card{
-  padding: 22px;
+#pricing .pricing-card{
   display:flex;
   flex-direction:column;
-  gap: 10px;
+  padding:18px;
+  gap:14px;
+  overflow:hidden;
 }
 
-#pricing .plan h3{
-  margin:0;
-  font-size: 22px;
+#pricing .pricing-card img{
+  width:100%;
+  aspect-ratio: 16 / 9;
+  object-fit:cover;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
 }
-#pricing .plan p{
+
+#pricing .pricing-card h3{
+  margin:0;
+  font-size:20px;
+  line-height:1.35;
+}
+
+#pricing .pricing-card p{
   margin:0;
   opacity:.9;
-}
-#pricing .plan .price{
-  font-size: 20px;
-  font-weight: 800;
 }
 
 /* =========================================================
