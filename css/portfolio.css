@@ -302,6 +302,113 @@ img{ max-width:100%; height:auto; display:block; }
 #works.section{
   padding-top: 160px;    /* Coming Soon を少し孤立させる */
 }
+/* =========================================================
+  4) Sections（余白の基本ルール）
+========================================================= */
+.section{ padding: 88px 0; }
+
+@media (max-width:600px){
+  .section{ padding: 64px 0; }
+}
+
+/* h2 */
+.section h2{ margin:0 0 18px; }
+
+/* =========================================================
+  セクション間の「個別調整」（ここだけ触ればOK）
+========================================================= */
+#works.section{
+  padding-top: 160px;     /* 上（Pricing→Works の間） */
+  padding-bottom: 88px;   /* 下（Works→Contact の間）※ここは好みで */
+}
+
+#pricing.section{
+  padding-top: 88px;      /* 上（上のセクションからの間） */
+  padding-bottom: 160px;  /* 下（Contact前の間） */
+}
+
+/* スマホだけ詰める（必要なら） */
+@media (max-width:600px){
+  #pricing.section,
+  #works.section{
+    padding-top: 96px;
+    padding-bottom: 96px;
+  }
+}
+
+/* =========================================================
+  Grid
+========================================================= */
+.grid3{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 24px;
+  align-items: stretch;
+}
+@media (max-width:1024px){
+  .grid3{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+@media (max-width:767px){
+  .grid3{ grid-template-columns: 1fr; }
+}
+
+/* =========================================================
+  4.1) Works Container（幅を統一）
+========================================================= */
+.section--full .container.works-container{
+  max-width: var(--w);   /* 1120pxに揃う */
+  width: 100%;
+  margin: 0 auto;
+  padding: 56px 16px;
+}
+
+/* =========================================================
+  Media Card（Works / Pricing 共通）
+========================================================= */
+#works .works-container .card,
+#pricing .pricing-cases .card{
+  display:flex;
+  flex-direction:column;
+  padding:18px;
+  gap:14px;
+  overflow:hidden;
+}
+
+/* 画像（共通） */
+#works .works-container .card > img,
+#pricing .pricing-cases .card > img{
+  width:100%;
+  aspect-ratio: 16 / 9;
+  object-fit:cover;
+  object-position: 50% 35%; /* 上を少し切って“でかく見せる” */
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+
+/* テキスト */
+#works .works-container .card h3,
+#pricing .pricing-cases .card h3{
+  margin:0;
+  font-size:20px;
+  line-height:1.35;
+}
+
+#works .works-container .card p,
+#pricing .pricing-cases .card p{
+  margin:0;
+  opacity:.9;
+}
+
+/* =========================================================
+  Worksだけ「絶対に効かせたい」場合の最終上書き（任意）
+  ※HTMLで <img class="work-thumb" ...> になっている前提
+========================================================= */
+#works img.work-thumb{
+  width:100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: 50% 35%;
+}
 
 /* =========================================================
   Media Card（画像 + テキストのカードを「1本化」）
