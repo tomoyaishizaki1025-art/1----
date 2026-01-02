@@ -307,6 +307,39 @@ img{ max-width:100%; height:auto; display:block; }
 /* WorksとPricingの間隔 */
 #works.section{ padding-bottom: 32px; }
 #pricing.section{ padding-top: 32px; }
+/* =========================================================
+  Media Card（画像 + テキストのカードを共通化）
+  - Works / Pricing の両方で同じルールにする
+========================================================= */
+
+/* 対象：Worksの .work と Pricingの .pricing-card */
+.media-card{
+  display:flex;
+  flex-direction:column;
+  padding:18px;
+  gap:14px;
+  overflow:hidden;
+}
+
+/* 画像の規格を統一 */
+.media-card > img{
+  width:100%;
+  aspect-ratio: 16 / 9;
+  object-fit:cover;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+
+/* 見出し・本文の余白を統一 */
+.media-card h3{
+  margin:0;
+  font-size:20px;
+  line-height:1.35;
+}
+.media-card p{
+  margin:0;
+  opacity:.9;
+}
 
 /* =========================================================
   Pricing（作業例カード：Coming Soon と同じ見た目）
@@ -402,6 +435,38 @@ img{ max-width:100%; height:auto; display:block; }
 .form .btn{
   width: fit-content;
   padding: 10px 16px;
+}
+/* 既存HTMLのクラスを media-card 扱いにする（HTMLを変えないため） */
+#works .work,
+#pricing .pricing-card{
+  /* media-card と同じ指定 */
+  display:flex;
+  flex-direction:column;
+  padding:18px;
+  gap:14px;
+  overflow:hidden;
+}
+
+#works .work > img,
+#pricing .pricing-card > img{
+  width:100%;
+  aspect-ratio: 16 / 9;
+  object-fit:cover;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+
+#works .work h3,
+#pricing .pricing-card h3{
+  margin:0;
+  font-size:20px;
+  line-height:1.35;
+}
+
+#works .work p,
+#pricing .pricing-card p{
+  margin:0;
+  opacity:.9;
 }
 
 /* =========================================================
