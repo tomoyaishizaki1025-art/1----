@@ -259,6 +259,13 @@ img{ max-width:100%; height:auto; display:block; }
 @media (max-width:767px){
   .grid3{ grid-template-columns: 1fr; }
 }
+@media (max-width:600px){
+  #pricing.section,
+  #works.section{
+    padding-top: 96px;
+    padding-bottom: 96px;
+  }
+}
 
 /* =========================================================
   4.1) Works Container
@@ -282,6 +289,19 @@ img{ max-width:100%; height:auto; display:block; }
 }
 #pricing.section{ padding-bottom: 120px; }
 #works.section{ padding-top: 120px; }
+/* 全体の基本リズム */
+.section{
+  padding: 88px 0;
+}
+
+/* 特定の文脈だけ調整 */
+#pricing.section{
+  padding-bottom: 160px; /* 問い合わせ前に「間」を作る */
+}
+
+#works.section{
+  padding-top: 160px;    /* Coming Soon を少し孤立させる */
+}
 
 /* =========================================================
   Media Card（画像 + テキストのカードを「1本化」）
