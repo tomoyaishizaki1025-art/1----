@@ -237,72 +237,6 @@ img{ max-width:100%; height:auto; display:block; }
 .hero-grid{ position:relative; z-index:1; }
 
 /* =========================================================
-  4) Sections
-========================================================= */
-.section{ padding: 88px 0; }
-@media (max-width:600px){
-  .section{ padding: 64px 0; }
-}
-
-.section h2{ margin:0 0 18px; }
-
-/* Grid */
-.grid3{
-  display:grid;
-  grid-template-columns: repeat(3, minmax(0,1fr));
-  gap: 24px;
-  align-items: stretch;
-}
-@media (max-width:1024px){
-  .grid3{ grid-template-columns: repeat(2, minmax(0,1fr)); }
-}
-@media (max-width:767px){
-  .grid3{ grid-template-columns: 1fr; }
-}
-@media (max-width:600px){
-  #pricing.section,
-  #works.section{
-    padding-top: 96px;
-    padding-bottom: 96px;
-  }
-}
-
-/* =========================================================
-  4.1) Works Container
-========================================================= */
-.section--full .container.works-container{
-  max-width: 1500px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 56px 16px;
-}
-
-/* WorksとPricingの間隔 */
-#works.section{ padding-bottom: 32px; }
-#pricing.section{ padding-top: 32px; }
-/* Worksだけ広げてるのをやめる */
-.section--full .container.works-container{
-  max-width: var(--w);   /* 1120pxに揃う */
-  width: 100%;
-  margin: 0 auto;
-  padding: 56px 16px;
-}
-#pricing.section{ padding-bottom: 120px; }
-#works.section{ padding-top: 120px; }
-/* 全体の基本リズム */
-.section{
-  padding: 88px 0;
-}
-
-/* 特定の文脈だけ調整 */
-#pricing.section{
-  padding-bottom: 160px; /* 問い合わせ前に「間」を作る */
-}
-
-#works.section{
-  padding-top: 160px;    /* Coming Soon を少し孤立させる */
-}
-/* =========================================================
   4) Sections（余白の基本ルール）
 ========================================================= */
 .section{ padding: 88px 0; }
@@ -311,23 +245,24 @@ img{ max-width:100%; height:auto; display:block; }
   .section{ padding: 64px 0; }
 }
 
-/* h2 */
 .section h2{ margin:0 0 18px; }
 
 /* =========================================================
   セクション間の「個別調整」（ここだけ触ればOK）
+  - 施工実績(#works) ⇔ お問い合わせ(#contact) の距離は
+    #works の padding-bottom を増やすのが最も安全
 ========================================================= */
-#works.section{
-  padding-top: 160px;     /* 上（Pricing→Works の間） */
-  padding-bottom: 88px;   /* 下（Works→Contact の間）※ここは好みで */
-}
-
 #pricing.section{
-  padding-top: 88px;      /* 上（上のセクションからの間） */
-  padding-bottom: 160px;  /* 下（Contact前の間） */
+  padding-top: 88px;
+  padding-bottom: 160px;   /* Contact前の“間” */
 }
 
-/* スマホだけ詰める（必要なら） */
+#works.section{
+  padding-top: 160px;      /* Pricing→Works の“間” */
+  padding-bottom: 160px;   /* Works→Contact の“間” ←ここが効く */
+}
+
+/* スマホだけ詰める */
 @media (max-width:600px){
   #pricing.section,
   #works.section{
@@ -356,7 +291,7 @@ img{ max-width:100%; height:auto; display:block; }
   4.1) Works Container（幅を統一）
 ========================================================= */
 .section--full .container.works-container{
-  max-width: var(--w);   /* 1120pxに揃う */
+  max-width: var(--w);     /* 1120pxに揃う */
   width: 100%;
   margin: 0 auto;
   padding: 56px 16px;
@@ -374,13 +309,13 @@ img{ max-width:100%; height:auto; display:block; }
   overflow:hidden;
 }
 
-/* 画像（共通） */
+/* 画像 */
 #works .works-container .card > img,
 #pricing .pricing-cases .card > img{
   width:100%;
   aspect-ratio: 16 / 9;
   object-fit:cover;
-  object-position: 50% 35%; /* 上を少し切って“でかく見せる” */
+  object-position: 50% 35%;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border);
 }
@@ -399,68 +334,13 @@ img{ max-width:100%; height:auto; display:block; }
   opacity:.9;
 }
 
-/* =========================================================
-  Worksだけ「絶対に効かせたい」場合の最終上書き（任意）
-  ※HTMLで <img class="work-thumb" ...> になっている前提
-========================================================= */
+/* Works画像だけ確実に効かせたい場合（任意）
+   HTML側で <img class="work-thumb" ...> のときだけ効く */
 #works img.work-thumb{
   width:100%;
   aspect-ratio: 16 / 9;
   object-fit: cover;
   object-position: 50% 35%;
-}
-
-/* =========================================================
-  Media Card（画像 + テキストのカードを「1本化」）
-  - Works / Pricing の両方に同じルールを適用
-========================================================= */
-
-/* 対象をここでまとめる（←重複を消す肝） */
-#works .works-container .card,
-#pricing .pricing-cases .card{
-  display:flex;
-  flex-direction:column;
-  padding:18px;
-  gap:14px;
-  overflow:hidden;
-}
-
-#works .works-container .card > img,
-#pricing .pricing-cases .card > img{
-  width:100%;
-  aspect-ratio: 16 / 9;
-  object-fit:cover;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border);
-}
-
-#works .works-container .card h3,
-#pricing .pricing-cases .card h3{
-  margin:0;
-  font-size:20px;
-  line-height:1.35;
-}
-
-#works .works-container .card p,
-#pricing .pricing-cases .card p{
-  margin:0;
-  opacity:.9;
-}
-#works .works-container .card > img,
-#pricing .pricing-cases .card > img{
-  width:100%;
-  aspect-ratio: 16 / 9;
-  object-fit:cover;
-  object-position: 50% 35%; /* ←追加：上を少し切って“でかく見せる” */
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border);
-}
-/* 最優先でWorks画像だけ確実に効かせる */
-#works img.work-thumb{
-  object-fit: cover;
-  object-position: 50% 35%;
-  width: 100%;
-  aspect-ratio: 16 / 9;
 }
 
 /* =========================================================
