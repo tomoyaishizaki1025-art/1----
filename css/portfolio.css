@@ -126,10 +126,11 @@ img{ max-width:100%; height:auto; display:block; }
   padding: .55rem .85rem;
   border-radius: .75rem;
   font-weight: 700;
+  margin-left: auto;
 }
 
 /* Tablet */
-@media (max-width:1024px){
+@width:1024px){
   .site-header{ padding: 10px 0; }
   .site-header .container{
     min-height: 56px;
@@ -153,7 +154,7 @@ img{ max-width:100%; height:auto; display:block; }
 
 .logo-text{
   font-weight: 700;
-  font-size: 1.2rem;
+  font-size: 2.1rem;
 }
 .header-logo{
   text-decoration: none;
