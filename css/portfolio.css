@@ -168,6 +168,15 @@ img{ max-width:100%; height:auto; display:block; }
   .brand{ font-size: 18px; }
   .nav-toggle{ display:inline-flex; align-items:center; gap:6px; }
 
+  logo-text{
+    font-size: 1rem;
+    white-space: nowrap;
+  }
+
+  .logo-icon{
+    width: 28px;
+    height: 28px;
+  }
   .nav{
     position: fixed;
     inset: 0;
