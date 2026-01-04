@@ -14,9 +14,6 @@
 
   --w:1120px;
 
- --text:#1F2937;   /* 濃グレー */
- --muted:#6B7280;  /* やや薄め */
-
   --radius:22px;
   --radius-sm:16px;
 
@@ -395,7 +392,13 @@ body{
 .h1{
   font-size: clamp(24px,4vw,40px);
   margin: .2em 0;
+  color: #1F2937; 
+  color: var(--text);      /* ← 追加 */
 }
+
+  color: var(--text);      /* ← 追加 */
+}
+
 .lead{ opacity: .9; }
 .h1{
   font-size: clamp(24px,4vw,40px);
@@ -405,7 +408,8 @@ body{
 
 .lead{
   opacity: .9;
-  color: var(--muted);  /* ← 追加 */
+  color: var(--muted);
+  color: #6B7280;  /* ← 追加 */
 }
 
 /* =========================================================
