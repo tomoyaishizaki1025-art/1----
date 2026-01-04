@@ -6,8 +6,8 @@
 :root{
   --bg:#F6F8FF;
   --surface:#FFFFFF;
-  --text:#0F172A;
-  --muted:#475569;
+  --text:#1F2937;   /* 濃グレー */
+  --muted:#6B7280;  /* やや薄め */
 
   --accent:#7DD3FC;
   --accent2:#C4B5FD;
@@ -141,8 +141,11 @@ img{ max-width:100%; height:auto; display:block; }
   .nav a{ font-size: 18px; padding: 10px 8px; }
 }
 .header-logo{
-  flex: 1;             /* 左を伸ばして右にMenuを押しやる */
-  min-width: 0;    
+  flex: 1;
+  min-width: 0;
+  display: flex;          /* 追加 */
+  align-items: center;    /* 追加 */
+  gap: 10px;              /* 追加 */
 }
 
 .logo-icon{
