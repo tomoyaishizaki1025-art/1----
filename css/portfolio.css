@@ -14,8 +14,8 @@
 
   --w:1120px;
 
-  --nav-base:#0F172A;
-  --nav-hover:#2563EB;
+ --text:#1F2937;   /* 濃グレー */
+ --muted:#6B7280;  /* やや薄め */
 
   --radius:22px;
   --radius-sm:16px;
