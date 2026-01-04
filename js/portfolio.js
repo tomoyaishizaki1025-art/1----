@@ -40,29 +40,43 @@
    *  C. スクロールで要素をふわっと表示（IntersectionObserver）
    *  - “少し手前”で発火させると自然（rootMargin）
    * ======================================================= */
- const io = new IntersectionObserver(
-  (entries, obs) => {
-    entries.forEach((e) => {
-      if (!e.isIntersecting) return;
+ // Hero内は初期表示で見せたい（監視しない）
+document.querySelectorAll('.hero .reveal').forEach((el) => {
+  el.classList.add('is-visible');
+  el.dataset.revealed = '1';
+});
 
-      const delay = Number(e.target.dataset.delay || 0);
+const revealEls = document.querySelectorAll(sel.revealTargets);
+if (revealEls.length) {
+  const io = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
 
-      if (e.target.dataset.revealed === '1') return;
-      e.target.dataset.revealed = '1';
+        // すでに処理済みはスキップ
+        if (e.target.dataset.revealed === '1') {
+          obs.unobserve(e.target);
+          return;
+        }
 
-      setTimeout(() => {
-        e.target.classList.add('is-visible');
-      }, delay);
+        const delay = Number(e.target.dataset.delay || 0);
+        e.target.dataset.revealed = '1';
 
-      obs.unobserve(e.target);
-    });
-  },
-  {
-    threshold: 0.10,
-    rootMargin: '0px 0px -8% 0px',
-  }
-);
+        setTimeout(() => {
+          e.target.classList.add('is-visible');
+        }, delay);
 
+        obs.unobserve(e.target);
+      });
+    },
+    {
+      threshold: 0.10,
+      rootMargin: '0px 0px -8% 0px',
+    }
+  );
+
+  revealEls.forEach((el) => io.observe(el));
+}
 
   /* =========================================================
    *  D. ヘッダー高さ（アンカー時のズレ対策）
