@@ -264,6 +264,15 @@ img{ max-width:100%; height:auto; display:block; }
   box-shadow: 0 14px 32px rgba(15,23,42,.14);
   border: 1px solid rgba(15,23,42,.08);
 }
+.hero-title-pop.is-visible{
+  animation: titlePop 900ms cubic-bezier(.2,.9,.2,1) both;
+}
+
+@keyframes titlePop{
+  0%   { transform: translateY(16px) scale(.985); filter: blur(1px); opacity: 0; }
+  60%  { transform: translateY(0) scale(1.01);   filter: blur(0);   opacity: 1; }
+  100% { transform: translateY(0) scale(1); }
+}
 
 .wiggle{ z-index:0; inset:-25%; opacity: .18; }
 
