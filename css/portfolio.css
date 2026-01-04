@@ -603,3 +603,9 @@ body.debug .works-container::after{
   object-fit: contain;   /* アイコン系は contain が綺麗 */
   display: block;
 }
+
+/* ファーストビュー（Hero）は初期から見えるようにする */
+.hero .reveal{
+  opacity: 1;
+  transform: none;
+}
