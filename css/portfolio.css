@@ -88,6 +88,9 @@ img{ max-width:100%; height:auto; display:block; }
 
   transition: box-shadow .2s ease, background .2s ease;
 }
+.site-header.is-stuck{
+  background: #ff3b30 !important; /* 赤で強制 */
+}
 
 
 
