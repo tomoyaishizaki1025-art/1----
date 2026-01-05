@@ -507,6 +507,9 @@ body{
     white-space: nowrap;
   }
 }
+@media (max-width:600px){
+  .nav{ z-index: 10001; } /* headerより上に */
+}
 
 /* ヒーローの見出し（class="h1"に当たる） */
 .hero .h1{
