@@ -82,6 +82,18 @@ img{ max-width:100%; height:auto; display:block; }
   border-bottom: 1px solid rgba(15,23,42,.06);
   backdrop-filter: blur(12px);
 }
+.site-header{
+  position: sticky;
+  top: 0;
+  z-index: 10000;
+  transition: box-shadow .2s ease, background .2s ease;
+}
+
+/* スクロールしたら付けるクラス */
+.site-header.is-stuck{
+  box-shadow: 0 12px 30px rgba(15,23,42,.10);
+  background: linear-gradient(90deg, rgba(220,235,255,.92), rgba(233,216,255,.92));
+}
 
 .site-header .container{
   display:flex;
