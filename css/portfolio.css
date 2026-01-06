@@ -254,7 +254,12 @@ img{ max-width:100%; height:auto; display:block; }
     flex-direction: column;
     gap: 10px;
 
-    background: #fff;
+    background: linear-gradient(
+    180deg,
+    #7DD3FC 0%,
+    #C4B5FD 100%
+    );
+
     backdrop-filter: none;          
     opacity: 0;
     pointer-events: none;
@@ -303,7 +308,14 @@ img{ max-width:100%; height:auto; display:block; }
   body.nav-open{ overflow: hidden; }
 
 }
- 
+ @media (max-width:600px){
+  body.nav-open .site-header{
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: #fff; /* ここは完全不透明に */
+  }
+
+}
 
 /* =========================================================
   3) Hero
