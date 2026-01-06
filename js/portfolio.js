@@ -20,7 +20,7 @@ console.log("portfolio.js loaded");
   const $header = document.querySelector(sel.header);
   const $navToggle = document.querySelector(sel.navToggle);
   const $nav = document.querySelector(sel.nav);
-  const $navClose = document.querySelector(sel.navClose); // ★追加
+  const $navClose = document.querySelector('.nav-close');
 
   // nav内のリンク（メニュー開閉やフォーカス用）
   const getNavLinks = () => ($nav ? Array.from($nav.querySelectorAll('a[href]')) : []);
@@ -192,6 +192,7 @@ console.log("portfolio.js loaded");
       },
       { passive: true }
     );
+    
 
     // リサイズでPC幅になったら閉じる
     window.addEventListener('resize', () => {
