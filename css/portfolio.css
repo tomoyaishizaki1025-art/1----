@@ -198,7 +198,9 @@ img{ max-width:100%; height:auto; display:block; }
   font-weight: 700;
   margin-left: auto;
 }
-
+.nav-close{
+  display: none;
+}
 /* Tablet */
 @media (max-width:1024px){
   .site-header{ padding: 10px 0; }
@@ -233,9 +235,6 @@ img{ max-width:100%; height:auto; display:block; }
 /* =========================================================
   2.1) Mobile Nav Overlay
 ========================================================= */
-.nav-close{
-  display: none;
-}
 @media (max-width:600px){
   .nav-toggle{ display:inline-flex; align-items:center; gap:6px; }
 
