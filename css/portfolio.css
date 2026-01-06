@@ -261,7 +261,12 @@ img{ max-width:100%; height:auto; display:block; }
     transform: translateY(-8px);
     transition: opacity .22s ease, transform .22s ease;
   }
-
+  .nav-bg{
+    position: absolute;
+    inset: 0;
+    background: #fff;        /* 完全不透明 */
+    z-index: 0;
+  }
   .nav a{
     font-size: 20px;
     padding: 16px 14px;
