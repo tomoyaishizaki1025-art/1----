@@ -247,7 +247,7 @@ img{ max-width:100%; height:auto; display:block; }
   .nav{
     position: fixed;
     inset: 0;
-    z-index: 9999;
+    z-index: 10001;
     padding: 92px 18px 24px;
 
     display: flex;
