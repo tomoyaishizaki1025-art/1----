@@ -306,7 +306,22 @@ img{ max-width:100%; height:auto; display:block; }
     justify-content: center;
   }
   body.nav-open{ overflow: hidden; }
-   
+    /* ★重なりの部屋を作る（これが大事） */
+  .nav{
+    isolation: isolate;
+  }
+
+  /* ★中身を背景より上に固定 */
+  .nav > *:not(.nav-bg){
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ★背景はクリック邪魔しない */
+  .nav-bg{
+    pointer-events: none;
+  }
+
 }
  
 
