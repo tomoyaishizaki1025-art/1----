@@ -323,11 +323,11 @@ img{ max-width:100%; height:auto; display:block; }
   3) Hero
 ========================================================= */
 .hero{
-  position:relative;
-  overflow:hidden;
+  position: relative;
+  overflow: hidden;
   min-height: 90vh;
-  display:grid;
-  place-items:center;
+  display: grid;
+  place-items: center;
   padding: clamp(24px,4vw,56px) 0;
 }
 
@@ -335,28 +335,15 @@ img{ max-width:100%; height:auto; display:block; }
   max-width: 1120px;
   margin: 0 auto;
   padding: 0 16px;
+
   display: grid;
+  grid-template-columns: minmax(0,520px) minmax(0,1fr); /* PC基準 */
   gap: clamp(16px,3vw,56px);
   align-items: center;
-  position:relative;
-  z-index:1;
+
+  position: relative;
+  z-index: 1;
   width: 100%;
-  justify-self: stretch;
-}
-
-@media (max-width:900px){
-  .hero-grid{ width:100%; justify-self:stretch; }
-}
-
-@media (max-width:900px){
-  .hero-grid{ grid-template-columns: 1fr; }
-  .hero-text{ order:1; text-align:left; max-width:100%; }
-  .hero-media{ order:2; display:flex; justify-content:center; }
-}
-
-@media (min-width:901px){
-  .hero-grid{ grid-template-columns: minmax(0,520px) minmax(0,1fr); }
-  .hero-text,.hero-media{ justify-self:stretch; }
 }
 
 .hero-text{ text-align:left; max-width:80ch; }
@@ -370,33 +357,27 @@ img{ max-width:100%; height:auto; display:block; }
   box-shadow: 0 14px 32px rgba(15,23,42,.14);
   border: 1px solid rgba(15,23,42,.08);
 }
-.hero-title-pop.is-visible{
-  animation: titlePop 900ms cubic-bezier(.2,.9,.2,1) both;
+
+/* 900px以下（ここ1回にまとめる） */
+@media (max-width:900px){
+  .hero-grid{ grid-template-columns: 1fr; }
+
+  .hero-text{ order:1; max-width:100%; }
+  .hero-media{ order:2; display:flex; justify-content:center; }
 }
 
-@keyframes titlePop{
-  0%   { transform: translateY(16px) scale(.985); filter: blur(1px); opacity: 0; }
-  60%  { transform: translateY(0) scale(1.01);   filter: blur(0);   opacity: 1; }
-  100% { transform: translateY(0) scale(1); }
-}
+/* タイトル演出：どっちか1つにする */
 .hero-title-pop.is-visible{
-  animation: titleFloatIn 4.0s cubic-bezier(.16,1,.3,1) both;
+  animation: titleFloatIn 4s cubic-bezier(.16,1,.3,1) both;
 }
 
 @keyframes titleFloatIn{
-  0%{
-    opacity: 0;
-    transform: translateY(18px);
-    filter: blur(2px);
-  }
-  100%{
-    opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
-  }
+  0%{ opacity:0; transform: translateY(18px); filter: blur(2px); }
+  100%{ opacity:1; transform: translateY(0); filter: blur(0); }
 }
 
-.wiggle{ z-index:0; inset:-25%; opacity: .18; }
+.wiggle{ z-index:0; inset:-25%; opacity:.18; }
+
 
 /* =========================================================
   4) Sections（余白）
