@@ -590,10 +590,19 @@ body{
   color: #0B1020;
   box-shadow: 0 10px 22px rgba(37,99,235,.12);
 }
-.hero-btn:hover,
-.hero-btn:focus{
-  transform: translateY(-1px);
+
+@media (hover:hover){
+  .btn-primary{
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+
+  .btn-primary:hover,
+  .btn-primary:focus{
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px rgba(37,99,235,.18);
+  }
 }
+
 
 /* =========================================================
   7) Footer
