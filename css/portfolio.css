@@ -245,6 +245,13 @@ img{ max-width:100%; height:auto; display:block; }
     height: 28px;
   }
   
+.hero-lead{
+    text-align: left;     /* 2行目のズレ対策の本命 */
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
   .nav{
     position: fixed;
     inset: 0;
@@ -551,7 +558,7 @@ body{
     white-space: nowrap;
   }
 }
-@media (max-width:600px){
+{
   .nav{ z-index: 10001; } /* headerより上に */
 }
 
