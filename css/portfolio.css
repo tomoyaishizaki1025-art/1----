@@ -340,6 +340,8 @@ img{ max-width:100%; height:auto; display:block; }
   align-items: center;
   position:relative;
   z-index:1;
+  width: 100%;
+  justify-self: stretch;
 }
 
 @media (max-width:900px){
