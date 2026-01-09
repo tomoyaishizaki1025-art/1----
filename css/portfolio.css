@@ -527,6 +527,131 @@ img{ max-width:100%; height:auto; display:block; }
   width: fit-content;
   padding: 10px 16px;
 }
+/* =========================================================
+  Contact (upgrade)
+  - ボタン押しやすい
+  - 2つのボタンを統一
+  - 準備中メッセージを見やすく
+========================================================= */
+
+#contact .card{
+  padding: 22px;
+}
+
+/* タイトル（HTMLに form-title を入れた場合） */
+.form-title{
+  margin: 0 0 8px;
+  font-size: 22px;
+  line-height: 1.3;
+  color: #3b5376;
+  font-family: "Kiwi Maru","M PLUS 1p","Noto Sans JP",sans-serif;
+}
+
+/* field構造（HTMLに class="field" を入れた場合） */
+.form .field{
+  display: grid;
+  gap: 8px;
+  font-weight: 700;
+  color: var(--text);
+}
+.form .field > span{
+  font-size: 14px;
+  color: rgba(31,41,55,.85);
+}
+
+/* 入力欄：余白、角、影、フォーカス */
+.form input,
+.form textarea{
+  width: 100%;
+  padding: 14px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(15,23,42,.14);
+  background: rgba(255,255,255,.95);
+  color: var(--text);
+  font: inherit;
+  outline: none;
+  box-shadow: 0 8px 18px rgba(15,23,42,.06);
+}
+
+.form textarea{ resize: vertical; min-height: 140px; }
+
+.form input:focus,
+.form textarea:focus{
+  border-color: rgba(59,130,246,.45);
+  box-shadow: 0 0 0 4px rgba(125,211,252,.35), 0 10px 22px rgba(15,23,42,.10);
+}
+
+/* ボタンエリア */
+.form-actions{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+@media (max-width:600px){
+  .form-actions{
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ボタン共通：大きく、押しやすく */
+.btn.btn--block{
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 52px;            /* ←押しやすさの本命 */
+  padding: 12px 16px;
+  border-radius: 14px;
+  font-weight: 800;
+  letter-spacing: .02em;
+  text-decoration: none;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+/* primary（送信） */
+.btn--primary{
+  border: 1px solid transparent;
+  background: linear-gradient(90deg,var(--accent),var(--accent2));
+  color: #0B1020;
+  box-shadow: 0 12px 24px rgba(37,99,235,.14);
+}
+
+/* ghost（mailto） */
+.btn--ghost{
+  border: 1px solid rgba(15,23,42,.14);
+  background: rgba(255,255,255,.80);
+  color: var(--nav-base);
+}
+
+/* hover */
+@media (hover:hover){
+  .btn--primary:hover,
+  .btn--ghost:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 16px 30px rgba(15,23,42,.12);
+  }
+}
+
+/* 準備中メッセージ */
+.form-note{
+  margin: 12px 0 0;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.70);
+  border: 1px solid rgba(15,23,42,.10);
+  color: rgba(31,41,55,.80);
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+/* JSで強調（任意） */
+.form-note.is-strong{
+  border-color: rgba(59,130,246,.35);
+  box-shadow: 0 0 0 4px rgba(125,211,252,.22);
+}
 
 /* =========================================================
   5) Typography
