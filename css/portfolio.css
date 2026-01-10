@@ -717,41 +717,6 @@ body{
   }
 }
 
-.btn-primary{
-  border-color: transparent;
-  background: linear-gradient(90deg,var(--accent),var(--accent2));
-  color: #0B1020;
-  box-shadow: 0 10px 22px rgba(37,99,235,.12);
-  margin-left: 30px;   /* 左右 */
-  margin-top: 15px;    /* 下 */
-}
-
-
-.hero-btn{
-  display:inline-block;
-  padding: 12px 18px;
-  border-radius: 14px;
-  text-decoration:none;
-  font-weight: 700;
-  border: 1px solid rgba(15,23,42,.14);
-  background: linear-gradient(90deg,var(--accent),var(--accent2));
-  color: #0B1020;
-  box-shadow: 0 10px 22px rgba(37,99,235,.12);
-}
-
-@media (hover:hover){
-  .btn-primary{
-    transition: transform .18s ease, box-shadow .18s ease;
-  }
-
-
-  .btn-primary:hover,
-  .btn-primary:focus{
-    transform: translateY(-2px);
-    box-shadow: 0 14px 28px rgba(37,99,235,.18);
-  }
-}
-
 /* =========================================================
   7) Footer
 ========================================================= */
