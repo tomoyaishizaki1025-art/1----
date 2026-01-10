@@ -213,13 +213,13 @@ console.log("portfolio.js loaded");
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 })();
-// Contact/Hero: mailto でメール作成画面を開く（1本化）
+// Contact/Hero: mailto でメール作成画面を開く（安定版）
 (() => {
   const form = document.getElementById("contactForm");
   if (!form) return;
 
-  const heroConsult = document.getElementById("heroConsult");
-  const mailtoLink  = document.getElementById("mailtoLink");
+  const heroConsult = document.getElementById("heroConsult"); // HeroのCTA
+  const mailtoLink  = document.getElementById("mailtoLink");  // お問い合わせ内のボタン
   const sendDemo    = document.getElementById("sendDemo");
   const note        = document.getElementById("formNote");
   const contact     = document.getElementById("contact");
@@ -242,9 +242,7 @@ console.log("portfolio.js loaded");
 ${message}
 `;
 
-    return `mailto:${encodeURIComponent(TO)}`
-      + `?subject=${encodeURIComponent(subject)}`
-      + `&body=${encodeURIComponent(body)}`;
+    return `mailto:${TO}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   };
 
   const pulseNote = () => {
@@ -253,34 +251,46 @@ ${message}
     setTimeout(() => note.classList.remove("is-strong"), 1400);
   };
 
-  const scrollToContactAndFocus = () => {
+  const goContact = () => {
     contact?.scrollIntoView({ behavior: "smooth", block: "start" });
     setTimeout(() => form.elements["name"]?.focus(), 350);
     pulseNote();
   };
 
-  const openMailOrGuide = (e) => {
-    e.preventDefault();
-
+  const hasAnyInput = () => {
     const name = getValue("name");
     const email = getValue("email");
     const message = getValue("message");
-
-    // 何も入ってなければフォームへ誘導
-    if (!name && !email && !message) {
-      scrollToContactAndFocus();
-      return;
-    }
-
-    // 入力があればメール作成画面へ
-    window.location.href = buildMailtoUrl();
+    return !!(name || email || message);
   };
 
-  // ヒーロー/お問い合わせの両方を同じ動作に
-  if (heroConsult) heroConsult.addEventListener("click", openMailOrGuide);
-  if (mailtoLink)  mailtoLink.addEventListener("click", openMailOrGuide);
+  // 1) 「メールで相談する」：常に mailto を開く（入力があれば内容を差し込む）
+  if (mailtoLink) {
+    mailtoLink.addEventListener("click", (e) => {
+      // 入力があるなら差し込み、無いなら素のmailto（＝メール起動だけ）
+      const url = hasAnyInput() ? buildMailtoUrl() : `mailto:${TO}`;
+      mailtoLink.setAttribute("href", url);
+      // ここでは preventDefault しない（ブラウザに mailto 起動させる）
+    });
+  }
 
-  // 送信（準備中）は案内だけ出す
+  // 2) Heroの「まずは相談してみる」：
+  //    入力が空 → お問い合わせへスクロール（ユーザー導線）
+  //    入力がある → mailto起動
+  if (heroConsult) {
+    heroConsult.addEventListener("click", (e) => {
+      if (!hasAnyInput()) {
+        e.preventDefault(); // #contactへのジャンプをJSスクロールに任せる
+        goContact();
+        return;
+      }
+      // 入力ありなら mailto 起動へ
+      e.preventDefault();
+      window.location.href = buildMailtoUrl();
+    });
+  }
+
+  // 3) 送信（準備中）は注意喚起だけ
   if (sendDemo) {
     sendDemo.addEventListener("click", (e) => {
       e.preventDefault();
