@@ -588,7 +588,6 @@ img{ max-width:100%; height:auto; display:block; }
   cursor: pointer;
   touch-action: manipulation;
 
-  box-shadow: 0 12px 24px rgba(37,99,235,.14);
 }
 
 
