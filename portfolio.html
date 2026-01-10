@@ -56,9 +56,10 @@
 難しい言葉は使いません。まずは話を聞かせてください。
 </p>
 
-<a class="btn btn-primary reveal" data-delay="300" href="#contact" id="heroConsult">
+<a class="btn btn--primary reveal" data-delay="300" href="#contact" id="heroConsult">
   まずは相談してみる
 </a>
+
 
 
 
@@ -190,6 +191,7 @@
   <!-- D: Contact -->
 <section id="contact" class="section section--full">
   <div class="container narrow">
+
     <form class="form card reveal" data-delay="80" id="contactForm">
       <h3 class="form-title">お問い合わせ</h3>
 
@@ -209,13 +211,14 @@
       </label>
 
       <div class="form-actions">
-        <!-- 送信は準備中：押せても送れないので無効化が一番親切 -->
-        <button type="button" class="btn btn--block btn--primary" disabled>
+        <!-- 送信は準備中：押しても送れない -->
+        <button type="button" class="btn btn--block btn--primary" id="sendDemo">
           送信（準備中）
         </button>
 
-        <!-- mailto は1個だけにする（IDもここだけ） -->
-        <a class="btn btn--block btn--ghost" id="mailtoLink" href="#">
+        <!-- mailto は1個だけ（IDもここだけ） -->
+        <a class="btn btn--block btn--ghost" id="mailtoLink"
+           href="mailto:tomoya.ishizaki1025@gmail.com">
           メールで相談する
         </a>
       </div>
@@ -225,6 +228,7 @@
         お手数ですが、右の「メールで相談する」からご連絡ください。
       </p>
     </form>
+
   </div>
 </section>
 

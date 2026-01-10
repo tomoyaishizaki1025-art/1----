@@ -223,7 +223,7 @@ console.log("portfolio.js loaded");
   const note = document.getElementById("formNote");
   const contactSection = document.getElementById("contact");
 
-  const TO = "tomoya.ishizaki1025@gmail.com"; // 宛先（あなたの商用アドレスに置き換え）
+  const TO = "tomoya.ishizaki1025@gmail.com"; 
 
   const getValue = (name) => (form.elements[name]?.value || "").trim();
 
