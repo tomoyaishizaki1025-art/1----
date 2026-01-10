@@ -720,12 +720,77 @@ body{
 /* =========================================================
   7) Footer
 ========================================================= */
-footer{
-  opacity: .9;
-  padding: 24px 0;
-  border-top: 1px solid rgba(15,23,42,.08);
-  color: rgba(15,23,42,.70);
+/* Footer layout */
+.site-footer .footer-inner{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
 }
+
+.site-footer .footer-left{
+  font-size: 14px;
+}
+
+.site-footer .footer-right{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Social icons */
+.site-footer .social{
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+  border: 1px solid rgba(15,23,42,.12);
+  background: rgba(255,255,255,.75);
+
+  color: var(--nav-base);
+  text-decoration: none;
+}
+
+.site-footer .social svg{
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+@media (hover:hover){
+  .site-footer .social{
+    transition: transform .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease;
+  }
+  .site-footer .social:hover,
+  .site-footer .social:focus-visible{
+    transform: translateY(-2px);
+    box-shadow: 0 12px 22px rgba(15,23,42,.12);
+    background: #fff;
+    color: var(--nav-hover);
+    outline: none;
+  }
+}
+
+.site-footer .footer-note{
+  margin: 10px auto 0;
+  max-width: var(--w);
+  padding: 0 16px;
+  font-size: 12px;
+  line-height: 1.7;
+  color: rgba(15,23,42,.65);
+}
+
+/* Mobile: 縦並び */
+@media (max-width:600px){
+  .site-footer .footer-inner{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
 
 /* =========================================================
   8) Reveal animation（ゆっくり）
