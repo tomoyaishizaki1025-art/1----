@@ -735,12 +735,6 @@ img{ max-width:100%; height:auto; display:block; }
   }
 }
 
-.site-footer{
-  position: relative;
-  margin-top: 40px;
-  padding-top: 22px;
-}
-
 .site-footer::before{
   content:"";
   position: absolute;
