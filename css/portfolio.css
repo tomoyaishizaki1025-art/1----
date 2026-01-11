@@ -594,50 +594,68 @@ img{ max-width:100%; height:auto; display:block; }
 }
 
 /* =========================================================
-  6) Buttons
+  6) Buttons（統合版：これ1セットだけ残す）
+  使う想定：class="btn", "btn btn--primary", "btn btn--ghost", "btn btn--block"
 ========================================================= */
+
+/* base */
 .btn{
-  display:inline-block;
-  padding: 10px 14px;
-  border-radius: 10px;
-  border: 1px solid rgba(15,23,42,.14);
-  background: #fff;
-  color: var(--text);
-  text-decoration:none;
-}
-/* Primary（HTMLは class="btn btn--primary"） */
-.btn.btn--primary{
   display: inline-flex;
   align-items: center;
   justify-content: center;
 
-  min-height: 52px;
-  padding: 12px 18px;
+  padding: 10px 14px;
   border-radius: 14px;
 
-  border: 1px solid transparent;
-  background: linear-gradient(90deg,var(--accent),var(--accent2));
-  color: var(--nav-base);
+  border: 1px solid rgba(15,23,42,.14);
+  background: #fff;
+  color: var(--text);
 
   font-weight: 800;
   letter-spacing: .02em;
   text-decoration: none;
   cursor: pointer;
+
   touch-action: manipulation;
+}
+
+/* full width utility（Contactで使う） */
+.btn--block{
+  width: 100%;
+  min-height: 52px;
+  padding: 12px 16px;
+}
+
+/* primary */
+.btn--primary{
+  border: 1px solid transparent;
+  background: linear-gradient(90deg,var(--accent),var(--accent2));
+  color: var(--nav-base);
 
   box-shadow: 0 12px 24px rgba(37,99,235,.14);
 }
 
+/* ghost */
+.btn--ghost{
+  background: rgba(255,255,255,.80);
+  color: var(--nav-base);
+}
+
+/* hover/focus */
 @media (hover:hover){
-  .btn.btn--primary{
-    transition: transform .18s ease, box-shadow .18s ease;
+  .btn{
+    transition: transform .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease;
   }
-  .btn.btn--primary:hover,
-  .btn.btn--primary:focus-visible{
+  .btn:hover{
     transform: translateY(-2px);
-    box-shadow: 0 14px 28px rgba(37,99,235,.18);
+    box-shadow: 0 16px 30px rgba(15,23,42,.12);
+  }
+  .btn:focus-visible{
+    outline: 3px solid rgba(147,197,253,.7);
+    outline-offset: 3px;
   }
 }
+
 
 /* =========================================================
   7) Footer
