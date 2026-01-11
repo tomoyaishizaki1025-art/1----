@@ -109,7 +109,7 @@ console.log("portfolio.js loaded");
     if (!$nav || !$navToggle) return;
 
     $nav.classList.add('is-open');
-    document.body.classList.add('nav-open');
+    document.documentElement.classList.add('nav-open');
 
     $navToggle.setAttribute('aria-expanded', 'true');
     $nav.setAttribute('aria-hidden', 'false');
@@ -123,7 +123,7 @@ console.log("portfolio.js loaded");
     if (!$nav || !$navToggle) return;
 
     $nav.classList.remove('is-open');
-    document.body.classList.remove('nav-open');
+    document.documentElement.classList.remove('nav-open');
 
     $navToggle.setAttribute('aria-expanded', 'false');
     $nav.setAttribute('aria-hidden', 'true');
