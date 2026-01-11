@@ -214,12 +214,7 @@ img{ max-width:100%; height:auto; display:block; }
 @media (max-width:600px){
   .nav-toggle{ display:inline-flex; align-items:center; gap:6px; }
 
-  .btn-primary{ margin-left: 0; }
 
-  .logo-icon{
-    width: 28px;
-    height: 28px;
-  }
   
 .hero-lead{
     text-align: left;     /* 2行目のズレ対策の本命 */
