@@ -8,7 +8,6 @@ Web制作・WordPress保守サービスのポートフォリオサイトです�
 ---
 
 ## 🌐 公開URL
-（GitHub Pages https://tomoyaishizaki1025-art.github.io）
 
 https://tomoyaishizaki1025-art.github.io
 
